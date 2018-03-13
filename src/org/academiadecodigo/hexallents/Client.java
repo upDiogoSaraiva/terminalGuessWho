@@ -5,10 +5,6 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-/**
- * Created on 13/03/2018.
- * Good Luck, Have Fun codecadet
- */
 public class Client {
     public final static String DEFAULT_NAME = "CLIENT";
 
@@ -22,19 +18,17 @@ public class Client {
      */
     public static void main(String args[]) {
 
-        if (args.length != 2) {
-            System.out.println("Usage: java ChatClient <host> <port>");
-            System.exit(1);
-        }
+        int port = 6666;
+        String host = "localhost";
 
         try {
 
             System.out.println("Trying to establish connection");
-            new Client(args[0], Integer.parseInt(args[1]));
+            new Client(host, port);
 
         } catch (NumberFormatException ex) {
 
-            System.out.println("Invalid port number " + args[0]);
+            System.out.println("Invalid port number " + host);
             System.out.print(1);
 
         }
