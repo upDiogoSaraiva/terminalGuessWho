@@ -5,9 +5,9 @@ package org.academiadecodigo.hexallents;
  */
 public enum Card {
 
-    RICARDO("a"),
-    CATARINA("a"),
-    TOMAS("a"),
+    RICARDO("ricky"),
+    CATARINA("catarina"),
+    TOMAS("tomas"),
     JOAO_COSTA("a"),
     DIOGO("a"),
     CATARINA_MACHADO("a"),

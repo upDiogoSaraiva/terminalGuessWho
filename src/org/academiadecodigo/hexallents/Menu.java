@@ -9,7 +9,6 @@ import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 public class Menu {
 
     private Prompt prompt;
-    private Server server;
 
     public Menu(){
         prompt = new Prompt(System.in, System.out);
@@ -29,10 +28,4 @@ public class Menu {
             System.out.println("Instructions");
         }
     }
-
-
-
-
-
-
 }

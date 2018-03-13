@@ -83,8 +83,16 @@ public class Server {
                     // Create a new Server Worker
                     connectionCount++;
                     String name = "Client-" + connectionCount;
+
                     ServerWorker worker = new ServerWorker(name, clientSocket);
                     workers.add(worker);
+
+                    // se se conectarem mais do que 2, não adiciono à lista
+
+
+
+
+
 
                     // Serve the client connection with a new Thread
                     Thread thread = new Thread(worker);
@@ -100,7 +108,14 @@ public class Server {
         } catch (IOException e) {
             System.out.println("Unable to start server on port " + port);
         }
+    }
 
+    public List<ServerWorker> getWorkers() {
+        return workers;
+    }
+
+    public void setWorkers(List<ServerWorker> workers) {
+        this.workers = workers;
     }
 
     public String listClients() {
@@ -127,7 +142,7 @@ public class Server {
      * @param origClient name of the client thread that the message originated from
      * @param message    the message to broadcast
      */
-    private void sendAll(String origClient, String message) {
+    public void sendAll(String origClient, String message) {
 
         // Acquire lock for safe iteration
         synchronized (workers) {
@@ -140,6 +155,10 @@ public class Server {
         }
 
     }
+
+    // quando te ligas -> gera uma carta
+    // sendCard();
+
 
 
     /**
@@ -237,6 +256,11 @@ public class Server {
             } catch (IOException ex) {
                 System.out.println("Error sending message to Client " + name + " : " + ex.getMessage());
             }
+        }
+
+
+        private void sendCard(String origClient, String message) {
+            // get random name and send asci card
         }
 
     }

@@ -7,9 +7,12 @@ import java.net.UnknownHostException;
 
 public class Client {
     public final static String DEFAULT_NAME = "CLIENT";
+    public final static int DEFAULT_PORT = 6666;
+    public final static String DEFAULT_HOST = "localhost";
 
     // The client socket
     private Socket socket;
+
 
     /**
      * Bootstraps the chat client
@@ -18,13 +21,12 @@ public class Client {
      */
     public static void main(String args[]) {
 
-        int port = 6666;
         String host = "localhost";
 
         try {
 
             System.out.println("Trying to establish connection");
-            new Client(host, port);
+            new Client(DEFAULT_HOST, DEFAULT_PORT);
 
         } catch (NumberFormatException ex) {
 
@@ -32,7 +34,6 @@ public class Client {
             System.out.print(1);
 
         }
-
     }
 
     /**
