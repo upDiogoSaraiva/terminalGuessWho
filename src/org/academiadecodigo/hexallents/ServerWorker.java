@@ -22,8 +22,9 @@ public class ServerWorker implements Runnable {
      * @param clientSocket the client socket connection
      * @throws IOException upon failure to open socket input and output streams
      */
-    private ServerWorker(String name, Socket clientSocket) throws IOException {
+    public ServerWorker(String name, Socket clientSocket, Server server) throws IOException {
 
+        this.server = server;
         this.name = name;
         this.clientSocket = clientSocket;
 
@@ -91,7 +92,7 @@ public class ServerWorker implements Runnable {
      * @param origClient the name of the client thread the message originated from
      * @param message    the message to send
      */
-    private void send(String origClient, String message) {
+    public void send(String origClient, String message) {
 
         try {
 
