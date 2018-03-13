@@ -5,14 +5,16 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+/**
+ * Created by GuessWho on 13/03/2018.
+ */
 public class Client {
-    public final static String DEFAULT_NAME = "CLIENT";
+
     public final static int DEFAULT_PORT = 6666;
     public final static String DEFAULT_HOST = "localhost";
 
     // The client socket
     private Socket socket;
-
 
     /**
      * Bootstraps the chat client
@@ -26,6 +28,9 @@ public class Client {
         try {
 
             System.out.println("Trying to establish connection");
+
+            new Menu();
+
             new Client(DEFAULT_HOST, DEFAULT_PORT);
 
         } catch (NumberFormatException ex) {

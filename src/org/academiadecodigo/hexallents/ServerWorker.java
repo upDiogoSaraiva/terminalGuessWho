@@ -4,14 +4,11 @@ import java.io.*;
 import java.net.Socket;
 
 /**
- * Created by codecadet on 13/03/2018.
+ * Created by GuessWho on 13/03/2018.
  */
 public class ServerWorker implements Runnable {
 
-    private Server server;
-
-    public final String LIST_CMD = "/LIST";
-
+    final private Server server;
     final private String name;
     final private Socket clientSocket;
     final private BufferedReader in;
@@ -30,8 +27,8 @@ public class ServerWorker implements Runnable {
 
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-
     }
+
 
     public String getName() {
         return name;
@@ -63,6 +60,7 @@ public class ServerWorker implements Runnable {
 
                 } else if (!line.isEmpty()) {
 
+                    String LIST_CMD = "/LIST";
                     if (line.toUpperCase().equals(LIST_CMD)) {
 
                         send("Clients Connected", server.listClients());

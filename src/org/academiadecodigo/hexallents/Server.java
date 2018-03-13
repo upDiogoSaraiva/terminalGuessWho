@@ -9,8 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created on 13/03/2018.
- * Good Luck, Have Fun codecadet
+ * Created by GuessWho on 13/03/2018.
  */
 public class Server {
 
@@ -18,8 +17,6 @@ public class Server {
      * Default port to run the server on
      */
     public final static int DEFAULT_PORT = 6666;
-
-    public final String LIST_CMD = "/LIST";
 
     /**
      * Synchronized List of worker threads, locked by itself
@@ -84,6 +81,10 @@ public class Server {
                     connectionCount++;
                     String name = "Client-" + connectionCount;
 
+
+                    /*if (connectionCount <= 2) {
+
+                    }*/
                     ServerWorker worker = new ServerWorker(name, clientSocket, this);
                     workers.add(worker);
 
