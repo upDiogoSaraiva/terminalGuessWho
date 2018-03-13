@@ -5,10 +5,10 @@ Group Project 02
 Classic Guess Who game, played in the terminal.
 
 ## Team
-Catarina Machado
+[Catarina Machado](https://github.com/mcatarina)
 
-Diogo Saraiva
+[Diogo Saraiva](https://github.com/upDiogoSaraiva)
 
-João Coelho
+[João Coelho](https://github.com/jopijuco)
 
-Rita Brito
+[Rita Brito](https://github.com/aritabrito)
