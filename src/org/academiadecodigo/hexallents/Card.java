@@ -126,7 +126,7 @@ public enum Card {
             "MMMMMMMMMMMWN00WMMMWNXXXKKOxl;;lkx:'dNWWWNNNNXXXXK\n" +
             "MMMMMMMMMMMMMWKKNWMMMMMMNXKOkoccc;.:KMWWNNNXXXKKKK\n" +
             "MMMMMMMMMMMMMMNKKNWWWWMMMWNKkdc,...xWWWNNNXXXKKKK0\n" +
-            "MMMMMMMMMMMMMMWWXKXXKXNXXXKxc;'....lXWNNXXXKKKK000\n" +
+            "MMMMMMMMTITOMMWWXKXXKXNXXXKxc;'....lXWNNXXXKKKK000\n" +
             "MMMMMMMMMMMMMWNNMWXX0kxdolc;'.......lKNXXKKKKK0000\n" +
             "MMMMMMMMMMMWWWKKWMMWNKOxolc;,'''''..,ok0KKKK00000O\n" +
             "MMMMMMMMMWNNWMX0WMMMMWNX0Oxocc::;;,',;,:d0000000OO"),
@@ -134,7 +134,7 @@ public enum Card {
             "MMMMMMMMMMMMMMMMMMMWKkolc::::cox0NMMMMMMMMMMMMWWWW\n" +
             "MMMMMMMMMMMMMMMMMXxc'...........,oKWWMMMMMMWWWWWWW\n" +
             "MMMMMMMMMMMMMMMXkl,.....;loddlc;'';d0NWWWWWWWWWWWW\n" +
-            "MMMMMMMMMMMMMW0dc:;,,',dXWWWWXKkl'..:kXWWNNNNNNNNN\n" +
+            "MMMMMMNIMMMMMW0dc:;,,',dXWWWWXKkl'..:kXWWNNNNNNNNN\n" +
             "MMMMMMMMMMMMNOdol::c:;oXMMMMWNKOl;...:OXXXXXXXXXXX\n" +
             "MMMMMMMMMMMNOdxdlcll;c0MMMMWNX0ko:,...cOKXXXXXKKKK\n" +
             "MMMMMMMMMMN0xkkocodc:dKWMMMX0kdoc;'...,x0KKKKKKKKK\n" +
@@ -156,7 +156,7 @@ public enum Card {
             "xkkkxdc:;cooooc:;:;...............,;,....':c::lol,\n" +
             "Okxxxxdc;cdxlll;;,;,..........'''';c;,'...,::::lo:"),
     RITA("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMMMMMMMMWWWW\n" +
-            "MMMMMMMMMMMMMMMMMMWX0OxxkO00kxdxOXWWMMMMMMMMMMMWWW\n" +
+            "MMMMMMMMMMMMMMMMMMWX0OxxkO00kxdxOXWWMMMMGIMMMMMWWW\n" +
             "MMMMMMMMMMMMMMMWNOo;'............'cxXWMMMMMMMMMMWW\n" +
             "MMMMMMMMMMMMMMNOc'...  ..',;:;,.....,xNMMMMWWWWWWW\n" +
             "MMMMMMMMMMMMWKl'......:x0KXXK0Oxl:'...cKWMMWWWWWWW\n" +
