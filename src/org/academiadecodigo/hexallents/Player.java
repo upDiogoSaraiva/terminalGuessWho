@@ -1,6 +1,7 @@
 package org.academiadecodigo.hexallents;
 
-import org.academiadecodigo.hexallents.helpers.Random;
+import org.academiadecodigo.hexallents.HelperClasses.Messages;
+import org.academiadecodigo.hexallents.HelperClasses.Random;
 
 import java.io.*;
 import java.net.Socket;
@@ -27,11 +28,11 @@ public class Player {
      */
     public static void main(String args[]) {
 
-        String host = "localhost";
+        String host = DEFAULT_HOST;
 
         try {
 
-            System.out.println("Trying to establish connection");
+            System.out.println(Messages.TRYING_ESTABLISH_CONNECTION);
 
             new Menu();
 
@@ -39,7 +40,7 @@ public class Player {
 
         } catch (NumberFormatException ex) {
 
-            System.out.println("Invalid port number " + host);
+            System.out.println(Messages.INVALID_PORT + host);
             System.out.print(1);
 
         }
@@ -55,16 +56,19 @@ public class Player {
 
         playersCard = CardType.values()[Random.generateRandomCard()];
 
+        System.out.println(Messages.YOUR_CARD_IS + playersCard.getName() + "\n");
+        System.out.println(playersCard.getAsci());
+
         try {
 
             // Connect to server
             socket = new Socket(serverName, serverPort);
-            System.out.println("Connected: " + socket);
+            //System.out.println("Connected: " + socket);
             start();
 
         } catch (UnknownHostException ex) {
 
-            System.out.println("Unknown host: " + ex.getMessage());
+            System.out.println(Messages.UNKNOWN_HOST + ex.getMessage());
             System.exit(1);
 
         } catch (IOException ex) {
@@ -98,7 +102,7 @@ public class Player {
                     consoleMessage = consoleIn.readLine();
 
                 } catch (IOException ex) {
-                    System.out.println("Error reading from console: " + ex.getMessage());
+                    System.out.println(Messages.READING_ERROR + ex.getMessage());
                     break;
                 }
 
@@ -120,12 +124,12 @@ public class Player {
                 socket.close();
 
             } catch (IOException ex) {
-                System.out.println("Error closing connection: " + ex.getMessage());
+                System.out.println(Messages.CLOSING_CONNECTION_ERROR + ex.getMessage());
             }
 
         } catch (IOException ex) {
 
-            System.out.println("Error sending message to server: " + ex.getMessage());
+            System.out.println(Messages.SENDING_TO_SERVER_ERROR + ex.getMessage());
 
         }
     }
@@ -150,20 +154,18 @@ public class Player {
 
                     if (incomingMessage != null) {
 
-
-
                         System.out.println(incomingMessage);
 
                     } else {
 
                         try {
 
-                            System.out.println("Connection closed, exiting...");
+                            System.out.println(Messages.CONNECTION_CLOSED);
                             sockIn.close();
                             socket.close();
 
                         } catch (IOException ex) {
-                            System.out.println("Error closing connection: " + ex.getMessage());
+                            System.out.println(Messages.CLOSING_CONNECTION_ERROR + ex.getMessage());
                         }
 
                     }
@@ -172,7 +174,7 @@ public class Player {
             } catch (SocketException ex) {
                 // Socket closed by other thread, no need for special handling
             } catch (IOException ex) {
-                System.out.println("Error reading from server: " + ex.getMessage());
+                System.out.println(Messages.READING_FROM_SERVER_ERROR + ex.getMessage());
             }
 
             // Server closed, but main thread blocked in console readline
@@ -180,4 +182,9 @@ public class Player {
 
         }
     }
+
+
+
+
+
 }

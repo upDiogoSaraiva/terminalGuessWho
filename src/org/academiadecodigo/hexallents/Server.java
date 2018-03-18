@@ -1,5 +1,7 @@
 package org.academiadecodigo.hexallents;
 
+import org.academiadecodigo.hexallents.HelperClasses.Messages;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -44,7 +46,7 @@ public class Server {
 
         } catch (NumberFormatException ex) {
 
-            System.out.println("Usage: java ChatServer [port_number]");
+            System.out.println(Messages.USAGE_ERROR);
             System.exit(1);
 
         }
@@ -58,14 +60,14 @@ public class Server {
      */
     private void start(int port) {
 
-        System.out.println("DEBUG: Server instance is : " + this);
+        System.out.println(Messages.DEBUG + this);
 
         int connectionCount = 0;
 
         try {
 
             // Bind to local port
-            System.out.println("Binding to port " + port + ", please wait  ...");
+            System.out.println(Messages.BINDING_PORT + port + ", please wait  ...");
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println("Server started: " + serverSocket);
 
@@ -73,13 +75,13 @@ public class Server {
 
                 // Block waiting for client connections
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("Player accepted: " + clientSocket);
+                System.out.println(Messages.PLAYER_ACCEPTED + clientSocket);
 
                 try {
 
                     // Create a new Server Worker
                     connectionCount++;
-                    String name = "Player-" + connectionCount;
+                    String name = Messages.PLAYER + connectionCount;
 
 
                     /*if (connectionCount <= 2) {
@@ -87,6 +89,9 @@ public class Server {
                     }*/
                     ServerWorker worker = new ServerWorker(name, clientSocket, this);
                     workers.add(worker);
+
+
+
 
                     // se se conectarem mais do que 2, não adiciono à lista
 
@@ -101,13 +106,13 @@ public class Server {
                     thread.start();
 
                 } catch (IOException ex) {
-                    System.out.println("Error receiving client connection: " + ex.getMessage());
+                    System.out.println(Messages.RECEIVING_CONNECTION_ERROR + ex.getMessage());
                 }
 
             }
 
         } catch (IOException e) {
-            System.out.println("Unable to start server on port " + port);
+            System.out.println(Messages.UNABLE_SERVER_START + port);
         }
     }
 

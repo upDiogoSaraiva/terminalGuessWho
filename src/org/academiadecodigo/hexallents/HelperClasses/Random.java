@@ -1,4 +1,4 @@
-package org.academiadecodigo.hexallents.helpers;
+package org.academiadecodigo.hexallents.HelperClasses;
 
 import org.academiadecodigo.hexallents.CardType;
 

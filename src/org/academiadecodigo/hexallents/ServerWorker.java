@@ -1,5 +1,7 @@
 package org.academiadecodigo.hexallents;
 
+import org.academiadecodigo.hexallents.HelperClasses.Messages;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -80,7 +82,7 @@ public class ServerWorker implements Runnable {
 
 
         } catch (IOException ex) {
-            System.out.println("Receiving error on " + name + " : " + ex.getMessage());
+            System.out.println(Messages.RECEIVING_ERROR + name + " : " + ex.getMessage());
         }
     }
 
@@ -99,7 +101,7 @@ public class ServerWorker implements Runnable {
             out.flush();
 
         } catch (IOException ex) {
-            System.out.println("Error sending message to Player " + name + " : " + ex.getMessage());
+            System.out.println(Messages.SENDING_MESSAGE_ERROR + name + " : " + ex.getMessage());
         }
     }
 
