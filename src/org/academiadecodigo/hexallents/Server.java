@@ -123,10 +123,9 @@ public class Server {
 
         synchronized (workers) {
 
-            Iterator<ServerWorker> it = workers.iterator();
-            while (it.hasNext()) {
+            for (ServerWorker serverWorker : workers) {
                 builder.append("\t");
-                builder.append(it.next().getName());
+                builder.append(serverWorker.getName());
                 builder.append("\n");
             }
         }
@@ -146,9 +145,8 @@ public class Server {
         // Acquire lock for safe iteration
         synchronized (workers) {
 
-            Iterator<ServerWorker> it = workers.iterator();
-            while (it.hasNext()) {
-                it.next().send(origClient, message);
+            for (ServerWorker serverWorker : workers) {
+                serverWorker.send(origClient, message);
             }
 
         }

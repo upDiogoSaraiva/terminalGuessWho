@@ -53,7 +53,7 @@ public class CardInfoMessages {
             "MMMMMXd;.....cxOWMMMMMWKkxddddl:,,. ...oKKK000OOOO\n" +
             "MMWXx;.......d0xkXMMMMWXK00Okddlll' ....cdkOOOOkOO\n" +
             "WNk;........'xK0xx0KXXXXNNNKOkkxxo'........';cc:ld\n" +
-            "xc'.........,kX0ddddxkOKWMWX0OOkko,......     ....";
+            "xc'.........,kX0ddddxkOKWMWX0OOkko,......     ....\n";
 
     public static final String CATARINA_CANTO_ASCII =
             "MMMMMMMMMMMMMMMMMMWNKkxxkOO0KNMMMMMMMMMMMMMMMMMMMM\n" +
@@ -80,7 +80,7 @@ public class CardInfoMessages {
             "dddlllc;:lxxdoolclc:,...;ccl;.....''..,;::'...,o00\n" +
             "dddool::cldkxoc;;;:c:..':cclc,',:::c;';;;;,....,d0\n" +
             "xdddolclllldkxl;;;:cccldxxxxkkkxxdl,,,,::;'.....,d\n" +
-            "xdodolloolooxkoc:ccodxk000000OOOkd,..,,,;:'......:";
+            "xdodolloolooxkoc:ccodxk000000OOOkd,..,,,;:'......:\n";
 
     public static final String TOMAS_ASCII =
             "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n" +
@@ -107,7 +107,7 @@ public class CardInfoMessages {
             "MMMMMMMMMMMMMMMWNNNWWNXK0Okxdol:,'',;::::;.....'''\n" +
             "MMMMMMMMMMMMMMMMMNXKXK00Okkxol:;;:lddxdo:.........\n" +
             "MMMMMMMMMMMMMMMMWXKXXK0OkxxdooodxOO0Od:...........\n" +
-            "MMMMMMMMMMMMMMN0dclKWWNXK00OOO0KXXKOl.............";
+            "MMMMMMMMMMMMMMN0dclKWWNXK00OOO0KXXKOl.............\n";
 
     public static final String JOAO_COSTA_ASCII =
             "MMMMMMMMMMMMMMMMMWNNNWWNXXNWMMMMMMMMMMMMMMMMMMMMMM\n" +
@@ -134,7 +134,7 @@ public class CardInfoMessages {
             "Odc,..........:kddxk0XXK0Okoc;'..................'\n" +
             ";'.......','..;0Xkdolc::;;;'......,...............\n" +
             "......',,,'...;0WXKOxolc;,,'.....;c'..............\n" +
-            ".....,;;,'....cXMWNK0Okkdol:,''',co:..............";
+            ".....,;;,'....cXMWNK0Okkdol:,''',co:..............\n";
 
     public static final String DIOGO_ASCII =
             "MMMMMMMMMMMMMMMMMMWNK0kk0KXWMMMMMMMMMMMMMMMMMMMMMM\n" +
@@ -161,7 +161,7 @@ public class CardInfoMessages {
             "MMMMMMMMTITOMMWWXKXXKXNXXXKxc;'....lXWNNXXXKKKK000\n" +
             "MMMMMMMMMMMMMWNNMWXX0kxdolc;'.......lKNXXKKKKK0000\n" +
             "MMMMMMMMMMMWWWKKWMMWNKOxolc;,'''''..,ok0KKKK00000O\n" +
-            "MMMMMMMMMWNNWMX0WMMMMWNX0Oxocc::;;,',;,:d0000000OO";
+            "MMMMMMMMMWNNWMX0WMMMMWNX0Oxocc::;;,',;,:d0000000OO\n";
 
     public static final String CATARINA_MACHADO_ASCII =
             "MMMMMMMMMMMMMMMMMMMMMMMMWWNNNWMMMMMMMMMMMMMMMMMWWW\n" +
@@ -188,7 +188,7 @@ public class CardInfoMessages {
             "xd0Xdc:,,::cclddl:,,ldxxxxxdl;....''',,;c:'';c::;;\n" +
             "od0Xko:,;::loolc:;'...............','...,cc::llc:,\n" +
             "xkkkxdc:;cooooc:;:;...............,;,....':c::lol,\n" +
-            "Okxxxxdc;cdxlll;;,;,..........'''';c;,'...,::::lo:";
+            "Okxxxxdc;cdxlll;;,;,..........'''';c;,'...,::::lo:\n";
 
     public static final String RITA_ASCII =
             "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMMMMMMMMWWWW\n" +
@@ -215,7 +215,7 @@ public class CardInfoMessages {
             "MMMMMMMWN0dolc'.;kOkO0XWWWWN0kxl:;',:loxO0K0000OOO\n" +
             "MMMMMMMMMWWMMW0x0WNNWWWMMMWN0xl:;;,:dO0KK00000OOOO\n" +
             "MMMMMMMMMMMWXNWWWWMMMMMMMMMWXOdc:::;,;:cc;;:cllood\n" +
-            "MMMMMMMMMN0olOWWMMMMMMMMMMMMN0dlll:;;;,,,..  .....";
+            "MMMMMMMMMN0olOWWMMMMMMMMMMMMN0dlll:;;;,,,..  .....\n";
 
     public static final String JOAO_COELHO_ASCII =
             "MMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWWWNNNNNNNXXXXXXXXXX\n" +
@@ -242,7 +242,7 @@ public class CardInfoMessages {
             "MMMMMMMMN0OkkxdlldOXNXOo;.....           ...,ldxxx\n" +
             "MMMMMMMMMNOxolccdOKNNKx:......   .     .......,cod\n" +
             "MMMMMMMMMMWNXXXKKXNXk:'............   ..........',\n" +
-            "MMMMMMMMMWWWWWWWNNNXOkxxddollc::;;,''','.'',,,'...";
+            "MMMMMMMMMWWWWWWWNNNXOkxxddollc::;;,''','.'',,,'...\n";
 
     public static final String FELIPE_ASCII =
             "MMMMMMMMMMMMMMMNK0OOOOO0KXXXXWMMMMMMMMMMMMMMMMMMMW\n" +
@@ -269,7 +269,7 @@ public class CardInfoMessages {
             "MMMMMMMMMMMNKOdkKKXXNWNX0kxo;'......,;;::loddddddd\n" +
             "MMMK0NWX0koc;,'c0K0000OOkxo;..............':looooo\n" +
             "MMMKlcl;'......'kXK0Okkxolc;,...''..     ....'''',\n" +
-            "MMMXl'..........oKNNXNNX0Oko:;;;;,..     .........";
+            "MMMXl'..........oKNNXNNX0Oko:;;;;,..     .........\n";
 
     public static final String JENNIFFER_ASCII =
             "MMMMMMMMMMMMMMMW0xoodxk0XNWWWWWWWNNNXXXXXXXXXKKKKK\n" +
@@ -296,7 +296,7 @@ public class CardInfoMessages {
             "MMMMMMMWWOc'.....:KMMMMMWNX0xl;,..   ..,:cc:::;,,;\n" +
             "MMMMMMMXkc,'....:0WMMMMMWWNKkdl:'.  ...'cooooool;.\n" +
             "MMMWNKOxooc'....:0WMMMMMMWNKOxol;,,,;::coddxxxxxx:\n" +
-            "MN0dc;:kXNXl..'ckXWWMMMMWWX0Okdoloolodxxxxxxxxxxxo";
+            "MN0dc;:kXNXl..'ckXWWMMMMWWX0Okdoloolodxxxxxxxxxxxo\n";
 
     public static final String RUBEN_ASCII =
             "MMMMMMMMMMMMMMMMMMMWWWWWNNXKKXNNWWWNNNNNNNNNNNNNXX\n" +
@@ -323,7 +323,7 @@ public class CardInfoMessages {
             "MMMMMMMMMMMMMWWMXkl;'.........   .dNNNNNNNXXXXXXKK\n" +
             "MMMMMMMMMMMNko0MMWXOdc;'.....  ..':xKNNNXXXXXXXKKK\n" +
             "MMMMMMMMMMXl.,OMMMMWNX0kdlc;'...',..;xKXXXXXXXKKKK\n" +
-            "MMMMMMMMMWk,..dWMMMMMWNX0Oko:,,,;:'  .cOXXXXXKKKK0";
+            "MMMMMMMMMWk,..dWMMMMMWNX0Oko:,,,;:'  .cOXXXXXKKKK0\n";
 
     public static final String HUGO_ASCII =
             "MMMMMMMMMMMMMMMMMWXOxddooodxOKNWMMMMMMMMMMMMMMMMMM\n" +
@@ -350,7 +350,7 @@ public class CardInfoMessages {
             "MMMMMMMMMMKxONNXXXKXXKK0Okxo:'.......:0WNNNXXXKKK0\n" +
             "MMMMMMMMMWx:dXNXXXK0Okxddolc;..... ..'oXNXXXKKKKK0\n" +
             "MMMMMMMMMXkddkO0KKKK0Okxdooc;'........'cdO0KKKK000\n" +
-            "MMMMMMWX0kdooooolx0K0Okxdolc;,''.........':ok00000";
+            "MMMMMMWX0kdooooolx0K0Okxdolc;,''.........':ok00000\n";
 
     public static final String MONICA_ASCII =
             "MMMMMMMMMMMMMMMMMMMWNXK0OOOO0KNWMMMMMMMWWWWWWWWNNN\n" +
@@ -377,7 +377,7 @@ public class CardInfoMessages {
             "MMMMMMMMMMMMWNWNXWMMMMWNK00OOdl:lxxdlcoxxxxxxxxxxd\n" +
             "MMMMMMMMMMWWNWMMMMMMMMWNKK0Oxl:;cloooodxxxxxxxxxxd\n" +
             "MMMNXKXNNWWWMMMMMMMMMWNKOkxdoc;;,',:clodddxxxxxxdd\n" +
-            "MWKOxOXNWMMMMMMMMMMMMMNKkxddoc:;;;;:cllllloodddddd";
+            "MWKOxOXNWMMMMMMMMMMMMMNKkxddoc:;;;;:cllllloodddddd\n";
 
     public static final String JOAO_OLIVEIRA_ASCII =
             "MMMMMMMMMMMMMMMMWNX0kkO00KKKKXXNWMMMMMMMWWWWWWWWNN\n" +
@@ -404,7 +404,7 @@ public class CardInfoMessages {
             "MMMMMMMMMMW0kKW0xoc;::cccllc,.....'oO00OOOOOkkkkkx\n" +
             "MMMMMMMMW0d,'kMWX0d:;,''............:k0OOkkkkkkkxx\n" +
             "MMMMMWNKx:;.'kMMMMNKOdc:,''..........:dxkkkkkkkxxx\n" +
-            "MMMWXkc:;;;',OMMMMMMMWXOxdoc:;,'.......,:ldxkkkxxx";
+            "MMMWXkc:;;;',OMMMMMMMWXOxdoc:;,'.......,:ldxkkkxxx\n";
 
     public static final String ANTONIO_ASCII =
             "MMMMMMMMMMMMMWWWWWNXK0OkxddxOKNNNNNNNNXXXXXXXXXKKK\n" +
@@ -431,7 +431,7 @@ public class CardInfoMessages {
             "MMMMMMMWXkc,.... ..                   ..:dkO00OOOO\n" +
             "MMMWNKko:,'..........                   ...,:lddxk\n" +
             "0kdl:,...............                    ........'\n" +
-            ",'...................          ..          .......";
+            ",'...................          ..          .......\n";
 
     public static final String GUILHERME_ASCII =
             "MMMMMMMMMMMMMMMMMMMMMWWNNXXNWMMMMMMMMMMMMMMMMMMMMM\n" +
@@ -458,7 +458,7 @@ public class CardInfoMessages {
             "MMMMMMMNOc,.;OOkkOxddkkOkkxoc,...     ...;d000OOOO\n" +
             "MMMMMMXxc,..'kX0kxxdlcc:;;;,'..      ....',lO0OOOO\n" +
             "MMMMMXxc,''..oXKOkxxdol:;;;'...     ...',,';lxOOOk\n" +
-            "MMMMNklc,''..:0X0Okxdolccc:;'..  .  .'',,'';;lkOkk";
+            "MMMMNklc,''..:0X0Okxdolccc:;'..  .  .'',,'';;lkOkk\n";
 
     public static final String SERGIO_ASCII =
             "MMMMMMMMMMMMMMMMMMMMMMWOollll:;cloxOXWMMMMMMMMMMMM\n" +
@@ -485,7 +485,7 @@ public class CardInfoMessages {
             "MMMMXkxkO0XWMMMMMMNd.   .......'',;;cdxkO00KKKKKKK\n" +
             "MWKd,.'dOO0KWMMMMKc.           ....:oxOOO000KKKKKK\n" +
             "Nx;...;xO0KXWMMMX:        ........cxxkkOOO000K00KK\n" +
-            "x:,...lOXNMMMMMWd.         ......;dkkkkkOOO00000KK";
+            "x:,...lOXNMMMMMWd.         ......;dkkkkkOOO00000KK\n";
 
     public static final String BRUNO_ASCII =
             "MMMMMMMMMMMMMMMMWXOxooooooloxOXWMMMMMMMMMMMMMMMMMM\n" +
@@ -512,7 +512,7 @@ public class CardInfoMessages {
             "MMMMMMMWNXK0O0Kd,';::lodoool:;;;:oKNXXNWMMMMMMMMMM\n" +
             "MMWNXK0kkkOOOONWOl;,,;;;;;;;;,;lONMWXKKKXNWMMMMMMM\n" +
             "NXK0OkkkkOOOOOKWMWKkoc;;:::cox0NMMMNXKXK000KKXNWWM\n" +
-            "000KK0OOOO000O0NMWWMWXkxxxk0NMMMMMWXKXXXXKKK0OO0KX";
+            "000KK0OOOO000O0NMWWMWXkxxxk0NMMMMMWXKXXXXKKK0OO0KX\n";
 
     public static final String BRIGHENTI_ASCII =
             "MMMMMMMMMMMMMMMMMMWXkddoddxk0NMMMMMMMMMMMMMMMMMMMM\n" +
@@ -539,7 +539,7 @@ public class CardInfoMessages {
             "MMMMMMMMMMMM0;.         ...         .dNMMMMMMMMMMM\n" +
             "MMMMMMMMMMWKkdo:'.                ..lNMMMMMMMMMMMM\n" +
             "MMMMMMMMMW0:.lkdl:,'............,;;.'kWMMMMMMMMMMM\n" +
-            "MMMMMMMMMXOd;lOkxoccc:::cclcccccc:'..oXMMMMMMMMMMM";
+            "MMMMMMMMMXOd;lOkxoccc:::cclcccccc:'..oXMMMMMMMMMMM\n";
 
     public static final String CATARINA_CAMPINO_ASCII =
             "MMMMMMMMMMMMMMMMMMMMWXOdddxO0Ok0NMMMMMMMMMMMMMMMMM\n" +
@@ -566,5 +566,5 @@ public class CardInfoMessages {
             "MMMMMMMMMMMMMMWx,:kNMNK0OO0XWMNx,   .l0NWMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMMXd;,:xKWWWNNNKd,       .';cx0XWMMMM\n" +
             "MMMMMMMMMMMMMN0o,;l:,l0X00k:.              ..;lxKW\n" +
-            "MMMMMMMMMMMN0c..  .:ld0XXXKd.                   'l";
+            "MMMMMMMMMMMN0c..  .:ld0XXXKd.                   'l\n";
 }

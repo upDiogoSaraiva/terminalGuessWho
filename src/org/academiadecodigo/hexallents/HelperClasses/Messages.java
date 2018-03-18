@@ -5,13 +5,31 @@ package org.academiadecodigo.hexallents.HelperClasses;
  */
 public class Messages {
 
+    // Who is who?
+    public static final String GAME_NAME =
+            " __        ___             _                _          ___ \n" +
+            " \\ \\      / / |__   ___   (_)___  __      _| |__   ___|__ \\\n" +
+            "  \\ \\ /\\ / /| '_ \\ / _ \\  | / __| \\ \\ /\\ / / '_ \\ / _ \\ / /\n" +
+            "   \\ V  V / | | | | (_) | | \\__ \\  \\ V  V /| | | | (_) |_| \n" +
+            "    \\_/\\_/  |_| |_|\\___/  |_|___/   \\_/\\_/ |_| |_|\\___/(_) \n" +
+            "                                                           ";
+
     // Menu Options
-    public static final String GAME_OPTIONS = "Game Options";
+    public static final String GAME_OPTIONS = "Select an option";
+
     public static final String GAME_OPTIONS_START = "Start";
     public static final String GAME_OPTIONS_INSTRUCTIONS = "Instructions";
     public static final String GAME_OPTIONS_QUIT = "Quit";
 
-    public static final String GAME_STARTED = "** Game Started **";
+    public static final String GAME_STARTED =
+            "\n\n" +
+            "   ____                        ____  _             _           _ \n" +
+            "  / ___| __ _ _ __ ___   ___  / ___|| |_ __ _ _ __| |_ ___  __| |\n" +
+            " | |  _ / _` | '_ ` _ \\ / _ \\ \\___ \\| __/ _` | '__| __/ _ \\/ _` |\n" +
+            " | |_| | (_| | | | | | |  __/  ___) | || (_| | |  | ||  __/ (_| |\n" +
+            "  \\____|\\__,_|_| |_| |_|\\___| |____/ \\__\\__,_|_|   \\__\\___|\\__,_|\n" +
+            "                                                                 \n\n";
+
     public static final String INSTRUCTIONS = "** Instructions **";
     public static final String GAME_OVER = "** Game Over **";
 

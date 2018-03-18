@@ -34,6 +34,8 @@ public class Player {
 
             System.out.println(Messages.TRYING_ESTABLISH_CONNECTION);
 
+            System.out.println(Messages.GAME_NAME);
+
             new Menu();
 
             new Player(DEFAULT_HOST, DEFAULT_PORT);
@@ -64,6 +66,8 @@ public class Player {
             // Connect to server
             socket = new Socket(serverName, serverPort);
             //System.out.println("Connected: " + socket);
+
+            System.out.println("Start asking questions");
             start();
 
         } catch (UnknownHostException ex) {
@@ -109,7 +113,6 @@ public class Player {
                 if (consoleMessage == null || consoleMessage.equals("/quit")) {
                     break;
                 }
-
 
                 sockOut.write(consoleMessage);
                 sockOut.newLine();
