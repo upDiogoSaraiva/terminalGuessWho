@@ -5,7 +5,8 @@ package org.academiadecodigo.hexallents;
  */
 public enum Card {
 
-    RICARDO("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWW\n" +
+    RICARDO("Ricardo",
+            "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWW\n" +
             "MMMMMMMMMMMMMMMMMMMNKOddooolloxOXWMMMMMMMMMMWWWWWW\n" +
             "MMMMMMMMMMMMMMMMWKd:'...........;kWMMMMMMMMWWWWWWW\n" +
             "MMMMMMMMMMMMMMWKd;'..............,kWMMMMMMMWWWWWWN\n" +
@@ -30,7 +31,9 @@ public enum Card {
             "MMWXx;.......d0xkXMMMMWXK00Okddlll' ....cdkOOOOkOO\n" +
             "WNk;........'xK0xx0KXXXXNNNKOkkxxo'........';cc:ld\n" +
             "xc'.........,kX0ddddxkOKWMWX0OOkko,......     ...."),
-    CATARINA_CANTO("MMMMMMMMMMMMMMMMMMWNKkxxkOO0KNMMMMMMMMMMMMMMMMMMMM\n" +
+
+    CATARINA_CANTO("Catarina Canto",
+            "MMMMMMMMMMMMMMMMMMWNKkxxkOO0KNMMMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMMMWKd:'....''',:dXMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMWXxc,,,:cllc:;'..;xNMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMWKdcclx0KK0OOkxl:'..cKMMMMMMMMMMMMMMM\n" +
@@ -55,7 +58,9 @@ public enum Card {
             "dddool::cldkxoc;;;:c:..':cclc,',:::c;';;;;,....,d0\n" +
             "xdddolclllldkxl;;;:cccldxxxxkkkxxdl,,,,::;'.....,d\n" +
             "xdodolloolooxkoc:ccodxk000000OOOkd,..,,,;:'......:"),
-    TOMAS("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n" +
+
+    TOMAS("Tomás",
+            "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMWX0OkxxdolloodOKNMMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMW0o,.............';lxKWMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMWXkdc,...................'cOWMMMMMMMMMMMMM\n" +
@@ -80,7 +85,9 @@ public enum Card {
             "MMMMMMMMMMMMMMMMMNXKXK00Okkxol:;;:lddxdo:.........\n" +
             "MMMMMMMMMMMMMMMMWXKXXK0OkxxdooodxOO0Od:...........\n" +
             "MMMMMMMMMMMMMMN0dclKWWNXK00OOO0KXXKOl............."),
-    JOAO_COSTA("MMMMMMMMMMMMMMMMMWNNNWWNXXNWMMMMMMMMMMMMMMMMMMMMMM\n" +
+
+    JOAO_COSTA("João Costa",
+            "MMMMMMMMMMMMMMMMMWNNNWWNXXNWMMMMMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMWKkoc;;:cc;;;:o0XXNMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMWXOo:,............',,c0WMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMWKko;;;'................,o0NMMMMMMMMMMMMMM\n" +
@@ -105,7 +112,9 @@ public enum Card {
             ";'.......','..;0Xkdolc::;;;'......,...............\n" +
             "......',,,'...;0WXKOxolc;,,'.....;c'..............\n" +
             ".....,;;,'....cXMWNK0Okkdol:,''',co:.............."),
-    DIOGO("MMMMMMMMMMMMMMMMMMWNK0kk0KXWMMMMMMMMMMMMMMMMMMMMMM\n" +
+
+    DIOGO("Diogo",
+            "MMMMMMMMMMMMMMMMMMWNK0kk0KXWMMMMMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMMWXOd:;,'..',:cldOKXWMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMNOdc,........ ......;o0XNMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMXx:'......            ..,ckNMMMMMMMMMMMM\n" +
@@ -130,7 +139,9 @@ public enum Card {
             "MMMMMMMMMMMMMWNNMWXX0kxdolc;'.......lKNXXKKKKK0000\n" +
             "MMMMMMMMMMMWWWKKWMMWNKOxolc;,'''''..,ok0KKKK00000O\n" +
             "MMMMMMMMMWNNWMX0WMMMMWNX0Oxocc::;;,',;,:d0000000OO"),
-    CATARINA_MACHADO("MMMMMMMMMMMMMMMMMMMMMMMMWWNNNWMMMMMMMMMMMMMMMMMWWW\n" +
+
+    CATARINA_MACHADO("Catarina Machado",
+            "MMMMMMMMMMMMMMMMMMMMMMMMWWNNNWMMMMMMMMMMMMMMMMMWWW\n" +
             "MMMMMMMMMMMMMMMMMMMWKkolc::::cox0NMMMMMMMMMMMMWWWW\n" +
             "MMMMMMMMMMMMMMMMMXxc'...........,oKWWMMMMMMWWWWWWW\n" +
             "MMMMMMMMMMMMMMMXkl,.....;loddlc;'';d0NWWWWWWWWWWWW\n" +
@@ -155,7 +166,9 @@ public enum Card {
             "od0Xko:,;::loolc:;'...............','...,cc::llc:,\n" +
             "xkkkxdc:;cooooc:;:;...............,;,....':c::lol,\n" +
             "Okxxxxdc;cdxlll;;,;,..........'''';c;,'...,::::lo:"),
-    RITA("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMMMMMMMMWWWW\n" +
+
+    RITA("Rita",
+            "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMMMMMMMMWWWW\n" +
             "MMMMMMMMMMMMMMMMMMWX0OxxkO00kxdxOXWWMMMMGIMMMMMWWW\n" +
             "MMMMMMMMMMMMMMMWNOo;'............'cxXWMMMMMMMMMMWW\n" +
             "MMMMMMMMMMMMMMNOc'...  ..',;:;,.....,xNMMMMWWWWWWW\n" +
@@ -180,7 +193,9 @@ public enum Card {
             "MMMMMMMMMWWMMW0x0WNNWWWMMMWN0xl:;;,:dO0KK00000OOOO\n" +
             "MMMMMMMMMMMWXNWWWWMMMMMMMMMWXOdc:::;,;:cc;;:cllood\n" +
             "MMMMMMMMMN0olOWWMMMMMMMMMMMMN0dlll:;;;,,,..  ....."),
-    JOAO_COELHO("MMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWWWNNNNNNNXXXXXXXXXX\n" +
+
+    JOAO_COELHO("João Colho",
+            "MMMMMMMMMMMMMMMMMMMMMMMMWWWWWWWWWNNNNNNNXXXXXXXXXX\n" +
             "MMMMMMMMWWNNWWWWWWNXK00OOO0KXNWWNNNNNNNXXXXXXXXXXX\n" +
             "MMMMMMWX0xdddoooc::;''....',;ld0XNNNNNXXXXXXXXXXKK\n" +
             "MMMW0dlc;,;,...................'cOKXXNXXXXXREIXKKK\n" +
@@ -205,7 +220,9 @@ public enum Card {
             "MMMMMMMMMNOxolccdOKNNKx:......   .     .......,cod\n" +
             "MMMMMMMMMMWNXXXKKXNXk:'............   ..........',\n" +
             "MMMMMMMMMWWWWWWWNNNXOkxxddollc::;;,''','.'',,,'..."),
-    FELIPE("MMMMMMMMMMMMMMMNK0OOOOO0KXXXXWMMMMMMMMMMMMMMMMMMMW\n" +
+
+    FELIPE("Felipe",
+            "MMMMMMMMMMMMMMMNK0OOOOO0KXXXXWMMMMMMMMMMMMMMMMMMMW\n" +
             "MMMMMMMMMMMMMWOl;''....',,,,;ldxkKNMMMMMMMMMMMMWWW\n" +
             "MMMMMMMMMMMMWk:'.................,l0WMMMMMMMWWWWWW\n" +
             "MMMMMMMMMMMXx;.....................'dXMWWWWWWWWNNN\n" +
@@ -230,7 +247,9 @@ public enum Card {
             "MMMK0NWX0koc;,'c0K0000OOkxo;..............':looooo\n" +
             "MMMKlcl;'......'kXK0Okkxolc;,...''..     ....'''',\n" +
             "MMMXl'..........oKNNXNNX0Oko:;;;;,..     ........."),
-    JENNIFFER("MMMMMMMMMMMMMMMW0xoodxk0XNWWWWWWWNNNXXXXXXXXXKKKKK\n" +
+
+    JENNIFFER("Jenniffer",
+            "MMMMMMMMMMMMMMMW0xoodxk0XNWWWWWWWNNNXXXXXXXXXKKKKK\n" +
             "MMMMMMMMMMMMMW0l'.......,;cdOKNNNNXNXXXXKKKKKKKKKK\n" +
             "MMMMMMMMMMMWNO;..............,lOKXXXXXKKKKKKKKKKKK\n" +
             "MMMMMMMMMMN0d:..................:xKKKKKKKKK0000000\n" +
@@ -255,7 +274,9 @@ public enum Card {
             "MMMMMMMXkc,'....:0WMMMMMWWNKkdl:'.  ...'cooooool;.\n" +
             "MMMWNKOxooc'....:0WMMMMMMWNKOxol;,,,;::coddxxxxxx:\n" +
             "MN0dc;:kXNXl..'ckXWWMMMMWWX0Okdoloolodxxxxxxxxxxxo"),
-    RUBEN("MMMMMMMMMMMMMMMMMMMWWWWWNNXKKXNNWWWNNNNNNNNNNNNNXX\n" +
+
+    RUBEN("Ruben",
+            "MMMMMMMMMMMMMMMMMMMWWWWWNNXKKXNNWWWNNNNNNNNNNNNNXX\n" +
             "MMMMMMMMMMMMMMMMMMWN0kxl::;'',;clx0XNNNNNNNNNNNNXX\n" +
             "MMMMMMMMMMMMMMMMN0d:'..............;lxOXNNNNNNNNNX\n" +
             "MMMMMMMMMMMMMMNk:'....................;xXNNNNNNNXX\n" +
@@ -280,7 +301,9 @@ public enum Card {
             "MMMMMMMMMMMNko0MMWXOdc;'.....  ..':xKNNNXXXXXXXKKK\n" +
             "MMMMMMMMMMXl.,OMMMMWNX0kdlc;'...',..;xKXXXXXXXKKKK\n" +
             "MMMMMMMMMWk,..dWMMMMMWNX0Oko:,,,;:'  .cOXXXXXKKKK0"),
-    HUGO("MMMMMMMMMMMMMMMMMWXOxddooodxOKNWMMMMMMMMMMMMMMMMMM\n" +
+
+    HUGO("Hugo",
+            "MMMMMMMMMMMMMMMMMWXOxddooodxOKNWMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMWKxo:,'.......',:o0WMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMN0d;,,'.............,oONMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMNOl,,coolccoddl:;'......'c0WMMMMMMMMMMMM\n" +
@@ -305,7 +328,9 @@ public enum Card {
             "MMMMMMMMMWx:dXNXXXK0Okxddolc;..... ..'oXNXXXKKKKK0\n" +
             "MMMMMMMMMXkddkO0KKKK0Okxdooc;'........'cdO0KKKK000\n" +
             "MMMMMMWX0kdooooolx0K0Okxdolc;,''.........':ok00000"),
-    MONICA("MMMMMMMMMMMMMMMMMMMWNXK0OOOO0KNWMMMMMMMWWWWWWWWNNN\n" +
+
+    MONICA("Mónica",
+            "MMMMMMMMMMMMMMMMMMMWNXK0OOOO0KNWMMMMMMMWWWWWWWWNNN\n" +
             "MMMMMMMMMMMMMMMWKkdlc;,'....',;cdOXWWWWWWWWNNNNNNN\n" +
             "MMMMMMMMMMMMMNOl;'................,lONWWNNNNNXXXXX\n" +
             "MMMMMMMMMMMW0l,......................cOXNNNXXXXXXX\n" +
@@ -330,7 +355,9 @@ public enum Card {
             "MMMMMMMMMMWWNWMMMMMMMMWNKK0Oxl:;cloooodxxxxxxxxxxd\n" +
             "MMMNXKXNNWWWMMMMMMMMMWNKOkxdoc;;,',:clodddxxxxxxdd\n" +
             "MWKOxOXNWMMMMMMMMMMMMMNKkxddoc:;;;;:cllllloodddddd"),
-    JOAO_OLIVEIRA("MMMMMMMMMMMMMMMMWNX0kkO00KKKKXXNWMMMMMMMWWWWWWWWNN\n" +
+
+    JOAO_OLIVEIRA("João Oliveira",
+            "MMMMMMMMMMMMMMMMWNX0kkO00KKKKXXNWMMMMMMMWWWWWWWWNN\n" +
             "MMMMMMMMMMMMMWXOdc;;;;;:;;,''';:ldkXWMMWWWWWWWWNNN\n" +
             "MMMMMMMMMMMWN0oc::,'''','.........':xXWWWWWWWNNNNN\n" +
             "MMMMMMMMMMMKdl::::,...',,,,,'.......'dXWWWWWNNNNNN\n" +
@@ -355,7 +382,9 @@ public enum Card {
             "MMMMMMMMW0d,'kMWX0d:;,''............:k0OOkkkkkkkxx\n" +
             "MMMMMWNKx:;.'kMMMMNKOdc:,''..........:dxkkkkkkkxxx\n" +
             "MMMWXkc:;;;',OMMMMMMMWXOxdoc:;,'.......,:ldxkkkxxx"),
-    ANTONIO("MMMMMMMMMMMMMWWWWWNXK0OkxddxOKNNNNNNNNXXXXXXXXXKKK\n" +
+
+    ANTONIO("António",
+            "MMMMMMMMMMMMMWWWWWNXK0OkxddxOKNNNNNNNNXXXXXXXXXKKK\n" +
             "MMMMMMMMMMMMWWWNKkdlc;,'....';d0XXXXXXXXXXXXXXXKKK\n" +
             "MMMMMMMMMMMWXOxoc:;;::clloolc:;:oOKXXXXXXXXXXXXXKK\n" +
             "MMMMMMMMMMNOl:;:lxO0KXNNNNNNXKOd::d0KKXXXXXXXXXKKK\n" +
@@ -380,7 +409,9 @@ public enum Card {
             "MMMWNKko:,'..........                   ...,:lddxk\n" +
             "0kdl:,...............                    ........'\n" +
             ",'...................          ..          ......."),
-    GUILHERME("MMMMMMMMMMMMMMMMMMMMMWWNNXXNWMMMMMMMMMMMMMMMMMMMMM\n" +
+
+    GUILHERME("Guilherme",
+            "MMMMMMMMMMMMMMMMMMMMMWWNNXXNWMMMMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMMMWXOdlc:;;;;;codkKWMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMNkc,..............;d0XNWMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMW0c..................',cd0NMMMMMMMMMMM\n" +
@@ -405,7 +436,9 @@ public enum Card {
             "MMMMMMXxc,..'kX0kxxdlcc:;;;,'..      ....',lO0OOOO\n" +
             "MMMMMXxc,''..oXKOkxxdol:;;;'...     ...',,';lxOOOk\n" +
             "MMMMNklc,''..:0X0Okxdolccc:;'..  .  .'',,'';;lkOkk"),
-    SERGIO("MMMMMMMMMMMMMMMMMMMMMMWOollll:;cloxOXWMMMMMMMMMMMM\n" +
+
+    SERGIO("Sérgio",
+            "MMMMMMMMMMMMMMMMMMMMMMWOollll:;cloxOXWMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMMMMMMW0x:....  .......,cxOKWMMMMMMMM\n" +
             "MMMMMMMMMMMMMMMMMNk:.. ....   ..........,cxKWMMMMM\n" +
             "MMMMMMMMMMMMMMMMXl.     ...   ............';xNMMMM\n" +
@@ -430,7 +463,9 @@ public enum Card {
             "MWKd,.'dOO0KWMMMMKc.           ....:oxOOO000KKKKKK\n" +
             "Nx;...;xO0KXWMMMX:        ........cxxkkOOO000K00KK\n" +
             "x:,...lOXNMMMMMWd.         ......;dkkkkkOOO00000KK"),
-    BRUNO("MMMMMMMMMMMMMMMMWXOxooooooloxOXWMMMMMMMMMMMMMMMMMM\n" +
+
+    BRUNO("Bruno",
+            "MMMMMMMMMMMMMMMMWXOxooooooloxOXWMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMWXx:'............,lONMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMKo'..................:xXMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMNk,......................,dXMMMMMMMMMMMM\n" +
@@ -455,7 +490,9 @@ public enum Card {
             "MMWNXK0kkkOOOONWOl;,,;;;;;;;;,;lONMWXKKKXNWMMMMMMM\n" +
             "NXK0OkkkkOOOOOKWMWKkoc;;:::cox0NMMMNXKXK000KKXNWWM\n" +
             "000KK0OOOO000O0NMWWMWXkxxxk0NMMMMMWXKXXXXKKK0OO0KX"),
-    BRIGHENTI("MMMMMMMMMMMMMMMMMMWXkddoddxk0NMMMMMMMMMMMMMMMMMMMM\n" +
+
+    BRIGHENTI("Brightenti",
+            "MMMMMMMMMMMMMMMMMMWXkddoddxk0NMMMMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMMNOo;.        .,o0WMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMKl;;:::;;::cclc:,,:xNMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMWNK0XNWWWNNNNWNNNNX0dc:xNMMMMMMMMMMMMM\n" +
@@ -480,7 +517,9 @@ public enum Card {
             "MMMMMMMMMMWKkdo:'.                ..lNMMMMMMMMMMMM\n" +
             "MMMMMMMMMW0:.lkdl:,'............,;;.'kWMMMMMMMMMMM\n" +
             "MMMMMMMMMXOd;lOkxoccc:::cclcccccc:'..oXMMMMMMMMMMM"),
-    CATARINA_CAMPINO("MMMMMMMMMMMMMMMMMMMMWXOdddxO0Ok0NMMMMMMMMMMMMMMMMM\n" +
+
+    CATARINA_CAMPINO("Catarina Campino",
+            "MMMMMMMMMMMMMMMMMMMMWXOdddxO0Ok0NMMMMMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMMMMWXOkkOkxo:;:okko,:xk0OXMMMMMMMMMMMMM\n" +
             "MMMMMMMMMMMWKkxkO0XWWWN0OOkxOK0KNOo:c0MMMMMMMMMMMM\n" +
             "MMMMMMMMMWKxdd0MMMMMMMMMX0OOXNWWWKk0o:OWMMMMMMMMMM\n" +
@@ -506,10 +545,16 @@ public enum Card {
             "MMMMMMMMMMMMMN0o,;l:,l0X00k:.              ..;lxKW\n" +
             "MMMMMMMMMMMN0c..  .:ld0XXXKd.                   'l");
 
+    private String name;
     private String asci;
 
-    Card(String asci) {
+    Card(String name, String asci) {
+        this.name = name;
         this.asci = asci;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getAsci() {
