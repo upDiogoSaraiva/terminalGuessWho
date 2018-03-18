@@ -16,7 +16,7 @@ public class Server {
     /**
      * Default port to run the server on
      */
-    public final static int DEFAULT_PORT = 6666;
+    private final static int DEFAULT_PORT = 6666;
 
     /**
      * Synchronized List of worker threads, locked by itself
@@ -56,7 +56,7 @@ public class Server {
      *
      * @param port the tcp port to bind to
      */
-    public void start(int port) {
+    private void start(int port) {
 
         System.out.println("DEBUG: Server instance is : " + this);
 
@@ -73,13 +73,13 @@ public class Server {
 
                 // Block waiting for client connections
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("Client accepted: " + clientSocket);
+                System.out.println("Player accepted: " + clientSocket);
 
                 try {
 
                     // Create a new Server Worker
                     connectionCount++;
-                    String name = "Client-" + connectionCount;
+                    String name = "Player-" + connectionCount;
 
 
                     /*if (connectionCount <= 2) {

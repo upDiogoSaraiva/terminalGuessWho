@@ -10,23 +10,23 @@ public class ServerWorker implements Runnable {
 
     final private Server server;
     final private String name;
-    final private Socket clientSocket;
+    final private Socket playerSocket;
     final private BufferedReader in;
     final private BufferedWriter out;
 
     /**
      * @param name         the name of the thread handling this client connection
-     * @param clientSocket the client socket connection
+     * @param playerSocket the client socket connection
      * @throws IOException upon failure to open socket input and output streams
      */
-    public ServerWorker(String name, Socket clientSocket, Server server) throws IOException {
+    public ServerWorker(String name, Socket playerSocket, Server server) throws IOException {
 
         this.server = server;
         this.name = name;
-        this.clientSocket = clientSocket;
+        this.playerSocket = playerSocket;
 
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+        in = new BufferedReader(new InputStreamReader(playerSocket.getInputStream()));
+        out = new BufferedWriter(new OutputStreamWriter(playerSocket.getOutputStream()));
     }
 
 
@@ -45,17 +45,17 @@ public class ServerWorker implements Runnable {
         try {
 
 
-            while (!clientSocket.isClosed()) {
+            while (!playerSocket.isClosed()) {
 
                 // Blocks waiting for client messages
                 String line = in.readLine();
 
                 if (line == null) {
 
-                    System.out.println("Client " + name + " closed, exiting...");
+                    System.out.println("Player " + name + " closed, exiting...");
 
                     in.close();
-                    clientSocket.close();
+                    playerSocket.close();
                     continue;
 
                 } else if (!line.isEmpty()) {
@@ -99,12 +99,8 @@ public class ServerWorker implements Runnable {
             out.flush();
 
         } catch (IOException ex) {
-            System.out.println("Error sending message to Client " + name + " : " + ex.getMessage());
+            System.out.println("Error sending message to Player " + name + " : " + ex.getMessage());
         }
     }
 
-
-    private void sendCard(String origClient, String message) {
-        // get random name and send asci card
-    }
 }

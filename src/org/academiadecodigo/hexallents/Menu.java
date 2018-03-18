@@ -9,7 +9,6 @@ import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 public class Menu {
 
     private Prompt prompt;
-    private ServerWorker serverWorker;
 
     public Menu() {
         prompt = new Prompt(System.in, System.out);
@@ -18,7 +17,7 @@ public class Menu {
 
     private void showMenu() {
 
-        String[] menuOptions = {"Start", "Instructions"};
+        String[] menuOptions = {"Start", "Instructions", "Quit"};
         MenuInputScanner scanner = new MenuInputScanner(menuOptions);
         scanner.setMessage("Menu Options");
 
@@ -30,6 +29,10 @@ public class Menu {
 
         if(answerIndex == 2) {
             System.out.println("Instructions");
+        }
+
+        if(answerIndex == 3) {
+            System.exit(0);
         }
     }
 }

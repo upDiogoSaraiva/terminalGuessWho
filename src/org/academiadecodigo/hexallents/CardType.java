@@ -3,7 +3,7 @@ package org.academiadecodigo.hexallents;
 /**
  * Created by GuessWho on 13/03/2018.
  */
-public enum Card {
+public enum CardType {
 
     RICARDO("Ricardo",
             "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWWWWW\n" +
@@ -548,7 +548,7 @@ public enum Card {
     private String name;
     private String asci;
 
-    Card(String name, String asci) {
+    CardType(String name, String asci) {
         this.name = name;
         this.asci = asci;
     }

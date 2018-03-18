@@ -1,5 +1,7 @@
 package org.academiadecodigo.hexallents;
 
+import org.academiadecodigo.hexallents.helpers.Random;
+
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
@@ -8,10 +10,12 @@ import java.net.UnknownHostException;
 /**
  * Created by GuessWho on 13/03/2018.
  */
-public class Client {
+public class Player {
 
-    public final static int DEFAULT_PORT = 6666;
-    public final static String DEFAULT_HOST = "localhost";
+    private final static int DEFAULT_PORT = 6666;
+    private final static String DEFAULT_HOST = "localhost";
+
+    private CardType playersCard;
 
     // The client socket
     private Socket socket;
@@ -31,7 +35,7 @@ public class Client {
 
             new Menu();
 
-            new Client(DEFAULT_HOST, DEFAULT_PORT);
+            new Player(DEFAULT_HOST, DEFAULT_PORT);
 
         } catch (NumberFormatException ex) {
 
@@ -47,7 +51,9 @@ public class Client {
      * @param serverName the hostname of the server to connect to
      * @param serverPort the tcp port to connect to
      */
-    public Client(String serverName, int serverPort) {
+    public Player(String serverName, int serverPort) {
+
+        playersCard = CardType.values()[Random.generateRandomCard()];
 
         try {
 
@@ -144,6 +150,8 @@ public class Client {
 
                     if (incomingMessage != null) {
 
+
+
                         System.out.println(incomingMessage);
 
                     } else {
@@ -172,5 +180,4 @@ public class Client {
 
         }
     }
-
 }
