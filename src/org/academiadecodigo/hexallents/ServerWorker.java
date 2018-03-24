@@ -66,9 +66,6 @@ public class ServerWorker implements Runnable {
 
                 }
 
-
-
-
                 // Blocks waiting for client messages
                 String line = in.readLine();
 
