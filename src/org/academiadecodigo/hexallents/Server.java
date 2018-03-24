@@ -99,7 +99,6 @@ public class Server {
 
 
 
-
                     // Serve the client connection with a new Thread
                     Thread thread = new Thread(worker);
                     thread.setName(name);
@@ -149,5 +148,9 @@ public class Server {
                 serverWorker.send(origClient, message);
             }
         }
+    }
+
+    public List<ServerWorker> getWorkers() {
+        return workers;
     }
 }
