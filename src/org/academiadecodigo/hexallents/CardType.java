@@ -1,71 +1,71 @@
 package org.academiadecodigo.hexallents;
 
-import org.academiadecodigo.hexallents.HelperClasses.CardInfoMessages;
+import static org.academiadecodigo.hexallents.HelperClasses.CardInfoMessages.*;
 
 /**
  * Created by GuessWho on 13/03/2018.
  */
 public enum CardType {
 
-    RICARDO(CardInfoMessages.RICARDO,
-            CardInfoMessages.RICARDO_ASCII),
+    RICARDO(RICARDO_NAME,
+            RICARDO_ASCII),
 
-    CATARINA_CANTO(CardInfoMessages.CATARINA_CANTO,
-            CardInfoMessages.CATARINA_CANTO_ASCII),
+    CATARINA_CANTO(CATARINA_CANTO_NAME,
+            CATARINA_CANTO_ASCII),
 
-    TOMAS(CardInfoMessages.TOMAS,
-            CardInfoMessages.TOMAS_ASCII),
+    TOMAS(TOMAS_NAME,
+            TOMAS_ASCII),
 
-    JOAO_COSTA(CardInfoMessages.JOAO_COSTA,
-            CardInfoMessages.JOAO_COSTA_ASCII),
+    JOAO_COSTA(JOAO_COSTA_NAME,
+            JOAO_COSTA_ASCII),
 
-    DIOGO(CardInfoMessages.DIOGO,
-            CardInfoMessages.DIOGO_ASCII),
+    DIOGO(DIOGO_NAME,
+            DIOGO_ASCII),
 
-    CATARINA_MACHADO(CardInfoMessages.CATARINA_MACHADO,
-            CardInfoMessages.CATARINA_MACHADO_ASCII),
+    CATARINA_MACHADO(CATARINA_MACHADO_NAME,
+            CATARINA_MACHADO_ASCII),
 
-    RITA(CardInfoMessages.RITA,
-            CardInfoMessages.RITA_ASCII),
+    RITA(RITA_NAME,
+            RITA_ASCII),
 
-    JOAO_COELHO(CardInfoMessages.JOAO_COELHO,
-            CardInfoMessages.JOAO_COELHO_ASCII),
+    JOAO_COELHO(JOAO_COELHO_NAME,
+            JOAO_COELHO_ASCII),
 
-    FELIPE(CardInfoMessages.FELIPE,
-            CardInfoMessages.FELIPE_ASCII),
+    FELIPE(FELIPE_NAME,
+            FELIPE_ASCII),
 
-    JENNIFFER(CardInfoMessages.JENNIFFER,
-            CardInfoMessages.JENNIFFER_ASCII),
+    JENNIFFER(JENNIFFER_NAME,
+            JENNIFFER_ASCII),
 
-    RUBEN(CardInfoMessages.RUBEN,
-            CardInfoMessages.RUBEN_ASCII),
+    RUBEN(RUBEN_NAME,
+            RUBEN_ASCII),
 
-    HUGO(CardInfoMessages.HUGO,
-            CardInfoMessages.HUGO_ASCII),
+    HUGO(HUGO_NAME,
+            HUGO_ASCII),
 
-    MONICA(CardInfoMessages.MONICA,
-            CardInfoMessages.MONICA_ASCII),
+    MONICA(MONICA_NAME,
+            MONICA_ASCII),
 
-    JOAO_OLIVEIRA(CardInfoMessages.JOAO_OLIVEIRA,
-            CardInfoMessages.JOAO_OLIVEIRA_ASCII),
+    JOAO_OLIVEIRA(JOAO_OLIVEIRA_NAME,
+            JOAO_OLIVEIRA_ASCII),
 
-    ANTONIO(CardInfoMessages.ANTONIO,
-            CardInfoMessages.ANTONIO_ASCII),
+    ANTONIO(ANTONIO_NAME,
+            ANTONIO_ASCII),
 
-    GUILHERME(CardInfoMessages.GUILHERME,
-            CardInfoMessages.GUILHERME_ASCII),
+    GUILHERME(GUILHERME_NAME,
+            GUILHERME_ASCII),
 
-    SERGIO(CardInfoMessages.SERGIO,
-            CardInfoMessages.SERGIO_ASCII),
+    SERGIO(SERGIO_NAME,
+            SERGIO_ASCII),
 
-    BRUNO(CardInfoMessages.BRUNO,
-            CardInfoMessages.BRUNO_ASCII),
+    BRUNO(BRUNO_NAME,
+            BRUNO_ASCII),
 
-    BRIGHENTI(CardInfoMessages.BRIGHENTI,
-            CardInfoMessages.BRIGHENTI_ASCII),
+    BRIGHENTI(BRIGHENTI_NAME,
+            BRIGHENTI_ASCII),
 
-    CATARINA_CAMPINO(CardInfoMessages.CATARINA_CAMPINO,
-            CardInfoMessages.CATARINA_CAMPINO_ASCII);
+    CATARINA_CAMPINO(CATARINA_CAMPINO_NAME,
+            CATARINA_CAMPINO_ASCII);
 
     private String name;
     private String asci;

@@ -1,9 +1,8 @@
 package org.academiadecodigo.hexallents;
 
-import org.academiadecodigo.hexallents.HelperClasses.Messages;
-
 import java.io.*;
 import java.net.Socket;
+import static org.academiadecodigo.hexallents.HelperClasses.Messages.*;
 
 /**
  * Created by GuessWho on 13/03/2018.
@@ -82,7 +81,7 @@ public class ServerWorker implements Runnable {
 
 
         } catch (IOException ex) {
-            System.out.println(Messages.RECEIVING_ERROR + name + " : " + ex.getMessage());
+            System.out.println(RECEIVING_ERROR + name + " : " + ex.getMessage());
         }
     }
 
@@ -101,8 +100,7 @@ public class ServerWorker implements Runnable {
             out.flush();
 
         } catch (IOException ex) {
-            System.out.println(Messages.SENDING_MESSAGE_ERROR + name + " : " + ex.getMessage());
+            System.out.println(SENDING_MESSAGE_ERROR + name + " : " + ex.getMessage());
         }
     }
-
 }

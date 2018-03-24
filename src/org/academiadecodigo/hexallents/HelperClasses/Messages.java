@@ -64,5 +64,4 @@ public class Messages {
 
     // ServerWorker
     public static final String SENDING_MESSAGE_ERROR = "Error sending message to Player ";
-
 }

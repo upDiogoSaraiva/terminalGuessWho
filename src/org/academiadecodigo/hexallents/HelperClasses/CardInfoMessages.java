@@ -6,26 +6,26 @@ package org.academiadecodigo.hexallents.HelperClasses;
 public class CardInfoMessages {
 
     // Player's name
-    public static final String RICARDO = "Ricardo";
-    public static final String CATARINA_CANTO = "Catarina Canto";
-    public static final String TOMAS = "Tomás";
-    public static final String JOAO_COSTA = "João Costa";
-    public static final String DIOGO = "Diogo";
-    public static final String CATARINA_MACHADO = "Catarina Machado";
-    public static final String RITA = "Rita";
-    public static final String JOAO_COELHO = "João Coelho";
-    public static final String FELIPE = "Felipe";
-    public static final String JENNIFFER = "Jenniffer";
-    public static final String RUBEN = "Ruben";
-    public static final String HUGO = "Hugo";
-    public static final String MONICA = "Mónica";
-    public static final String JOAO_OLIVEIRA = "João Oliveira";
-    public static final String ANTONIO = "António";
-    public static final String GUILHERME = "Guilherme";
-    public static final String SERGIO = "Sérgio";
-    public static final String BRUNO = "Bruno";
-    public static final String BRIGHENTI = "Brighenti";
-    public static final String CATARINA_CAMPINO = "Catarina Campino";
+    public static final String RICARDO_NAME = "Ricardo";
+    public static final String CATARINA_CANTO_NAME = "Catarina Canto";
+    public static final String TOMAS_NAME = "Tomás";
+    public static final String JOAO_COSTA_NAME = "João Costa";
+    public static final String DIOGO_NAME = "Diogo";
+    public static final String CATARINA_MACHADO_NAME = "Catarina Machado";
+    public static final String RITA_NAME = "Rita";
+    public static final String JOAO_COELHO_NAME = "João Coelho";
+    public static final String FELIPE_NAME = "Felipe";
+    public static final String JENNIFFER_NAME = "Jenniffer";
+    public static final String RUBEN_NAME = "Ruben";
+    public static final String HUGO_NAME = "Hugo";
+    public static final String MONICA_NAME = "Mónica";
+    public static final String JOAO_OLIVEIRA_NAME = "João Oliveira";
+    public static final String ANTONIO_NAME = "António";
+    public static final String GUILHERME_NAME = "Guilherme";
+    public static final String SERGIO_NAME = "Sérgio";
+    public static final String BRUNO_NAME = "Bruno";
+    public static final String BRIGHENTI_NAME = "Brighenti";
+    public static final String CATARINA_CAMPINO_NAME = "Catarina Campino";
 
     // ASCII
     public static final String RICARDO_ASCII =
