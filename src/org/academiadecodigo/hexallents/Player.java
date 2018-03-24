@@ -17,6 +17,8 @@ public class Player {
 
     private CardType playersCard;
 
+    private int maxQuestions = 5;
+
     // The client socket
     private Socket socket;
 
@@ -66,7 +68,7 @@ public class Player {
             socket = new Socket(serverName, serverPort);
             //System.out.println("Connected: " + socket);
 
-            System.out.println("Start asking questions");
+           // System.out.println("Start asking questions");
             start();
 
         } catch (UnknownHostException ex) {
@@ -100,7 +102,6 @@ public class Player {
                 String consoleMessage = null;
 
                 try {
-
                     // Blocks waiting for user input
                     consoleMessage = consoleIn.readLine();
 

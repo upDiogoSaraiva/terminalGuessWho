@@ -71,6 +71,8 @@ public class Server {
 
             while (true) {
 
+
+
                 // Block waiting for client connections
                 Socket clientSocket = serverSocket.accept();
                 System.out.println(PLAYER_ACCEPTED + clientSocket);

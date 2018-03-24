@@ -15,6 +15,8 @@ public class ServerWorker implements Runnable {
     final private BufferedReader in;
     final private BufferedWriter out;
 
+    private boolean playerCanAsk = false;
+
     /**
      * @param name         the name of the thread handling this client connection
      * @param playerSocket the client socket connection
@@ -45,8 +47,27 @@ public class ServerWorker implements Runnable {
 
         try {
 
-
             while (!playerSocket.isClosed()) {
+
+                if (Thread.activeCount() < 4) {
+                    System.out.println("só há um jogador"); // player 1 tem esperar
+
+                    sendWaitingMessage("Clients Connected", server.listClients());
+                    // enviar mensagem para o 1 a dizer que está à espera de oponent
+
+
+                    while (!playerCanAsk) {
+                        if (Thread.activeCount() > 3) {
+                            playerCanAsk = true;
+                        }
+
+                        return;
+                    }
+
+                }
+
+
+
 
                 // Blocks waiting for client messages
                 String line = in.readLine();
@@ -96,6 +117,19 @@ public class ServerWorker implements Runnable {
         try {
 
             out.write(origClient + ": " + message);
+            out.newLine();
+            out.flush();
+
+        } catch (IOException ex) {
+            System.out.println(SENDING_MESSAGE_ERROR + name + " : " + ex.getMessage());
+        }
+    }
+
+    public void sendWaitingMessage(String origClient, String message) {
+
+        try {
+
+            out.write("Waiting for opponent to start the game");
             out.newLine();
             out.flush();
 
