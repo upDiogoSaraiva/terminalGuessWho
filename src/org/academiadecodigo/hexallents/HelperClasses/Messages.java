@@ -17,7 +17,6 @@ public class Messages {
     public static final String GAME_OPTIONS = "Select an option";
 
     public static final String GAME_OPTIONS_START = "Start";
-    public static final String GAME_OPTIONS_INSTRUCTIONS = "Instructions";
     public static final String GAME_OPTIONS_QUIT = "Quit";
 
     public static final String GAME_STARTED =
@@ -29,7 +28,15 @@ public class Messages {
             "  \\____|\\__,_|_| |_| |_|\\___| |____/ \\__\\__,_|_|   \\__\\___|\\__,_|\n" +
             "                                                                 \n\n";
 
-    public static final String INSTRUCTIONS = "** Instructions **";
+    // Instructions
+    public static final String INSTRUCTIONS = "\n ** Instructions ** \n\n" +
+            "1 - Each player receives a card which the opponent will have to guess. \n" +
+            "2 - There is a maximum of 5 attempts to guess the opponent card. \n" +
+            "3 - All questions have a direct (Y/N) answer. \n" +
+            "4 - To guess your opponent's card just need to type: /guess <card name>. \n" +
+            "5 - Exit game at any time by typing: /quit \n" +
+            "6 - Good luck ! \n";
+
     public static final String GAME_OVER = "** Game Over **";
 
 
