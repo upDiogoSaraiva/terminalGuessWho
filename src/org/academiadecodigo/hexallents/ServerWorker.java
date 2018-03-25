@@ -1,8 +1,10 @@
 package org.academiadecodigo.hexallents;
 
+import static org.academiadecodigo.hexallents.HelperClasses.Messages.*;
+import org.academiadecodigo.hexallents.HelperClasses.Random;
 import java.io.*;
 import java.net.Socket;
-import static org.academiadecodigo.hexallents.HelperClasses.Messages.*;
+import java.util.List;
 
 /**
  * Created by GuessWho on 13/03/2018.
@@ -15,13 +17,12 @@ public class ServerWorker implements Runnable {
     final private BufferedReader in;
     final private BufferedWriter out;
 
-    private boolean playerCanAsk = false;
+    private final List<ServerWorker> playersList;
+    private int maxQuestions = 5;
 
-    /**
-     * @param name         the name of the thread handling this client connection
-     * @param playerSocket the client socket connection
-     * @throws IOException upon failure to open socket input and output streams
-     */
+    private CardType playersCard;
+    private PlayerState playerState = PlayerState.WAITING;
+
     public ServerWorker(String name, Socket playerSocket, Server server) throws IOException {
 
         this.server = server;
@@ -30,16 +31,12 @@ public class ServerWorker implements Runnable {
 
         in = new BufferedReader(new InputStreamReader(playerSocket.getInputStream()));
         out = new BufferedWriter(new OutputStreamWriter(playerSocket.getOutputStream()));
+
+        playersList = server.getWorkers();
+        playersCard = CardType.values()[Random.generateRandomCard()];
+        printCard();
     }
 
-
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @see Thread#run()
-     */
     @Override
     public void run() {
 
@@ -47,27 +44,21 @@ public class ServerWorker implements Runnable {
 
         try {
 
-            while (!playerSocket.isClosed()) {
+            int currentPlayerIndex = playersList.indexOf(this);
 
-                if (Thread.activeCount() < 4) {
-                    System.out.println("só há um jogador"); // player 1 tem esperar
+            // SET INITIAL PLAYER STATES
+            setInitialStates();
 
-                    sendWaitingMessage("Clients Connected", server.listClients());
-                    // enviar mensagem para o 1 a dizer que está à espera de oponent
+            // QUESTIONS LOOP
+            while (maxQuestions != 0) {
 
+                // PROMPT MESSAGES TO PLAYER
+                promptMessages();
 
-                    while (!playerCanAsk) {
-                        if (Thread.activeCount() > 3) {
-                            playerCanAsk = true;
-                        }
-
-                        return;
-                    }
-
-                }
+                String line = null;
 
                 // Blocks waiting for client messages
-                String line = in.readLine();
+                line = in.readLine();
 
                 if (line == null) {
 
@@ -79,36 +70,175 @@ public class ServerWorker implements Runnable {
 
                 } else if (!line.isEmpty()) {
 
-                    String LIST_CMD = "/LIST";
-                    if (line.toUpperCase().equals(LIST_CMD)) {
+                    String[] lineArray = line.split(" ", 2);
 
-                        send("Clients Connected", server.listClients());
-
-                    } else {
-
-                        // Broadcast message to all other clients
-                        server.sendAll(name, line);
-                    }
-
+                    // MESSAGE PLAYER SENDS
+                    checkAnswer(lineArray, currentPlayerIndex);
+                    checkIfCanSend(lineArray, line);
                 }
-
             }
 
-            //workers.remove(this);
-
-
+            System.exit(0);
 
         } catch (IOException ex) {
             System.out.println(RECEIVING_ERROR + name + " : " + ex.getMessage());
         }
     }
 
-    /**
-     * Send a message to the client served by this thread
-     *
-     * @param origClient the name of the client thread the message originated from
-     * @param message    the message to send
-     */
+    // PRIVATE METHODS
+    private void printCard() {
+
+        try {
+
+            out.write(YOUR_CARD_IS + playersCard.getName() + "\n\n" + playersCard.getAsci());
+            out.newLine();
+            out.flush();
+
+        } catch (IOException ex) {
+            System.out.println(SENDING_MESSAGE_ERROR + name + " : " + ex.getMessage());
+        }
+    }
+
+    private void setInitialStates() {
+
+        if (playersList.size() == 1) {
+            this.setPlayerState(PlayerState.CAN_ASK);
+        }
+
+        if (playersList.size() == 2) {
+            this.setPlayerState(PlayerState.WAITING);
+        }
+    }
+
+    private void promptMessages() {
+
+        switch (this.getPlayerState()) {
+            case CAN_ASK:
+                messageToUser(ASK_A_QUESTION);
+                break;
+            case WAITING:
+                messageToUser(WAITING_FOR_OPONNENT);
+                break;
+            case CAN_ANSWER:
+                messageToUser(WRITE_YOUR_ANSWER);
+                break;
+        }
+    }
+
+    private void checkPlayerAnswer(CardType[] cardTypes, String[] lineArray, int currentPlayerIndex) {
+
+        for (CardType cardType : cardTypes) {
+
+            if (lineArray[1].toLowerCase().trim().contains(cardType.getName().toLowerCase())) {
+
+                if (currentPlayerIndex == 0) {
+
+                    if (cardType == playersList.get(1).getPlayersCard()) {
+
+                        this.setPlayerState(PlayerState.WON);
+                        playersList.get(1).setPlayerState(PlayerState.LOST);
+
+                    } else {
+
+                        this.setPlayerState(PlayerState.LOST);
+                        playersList.get(1).setPlayerState(PlayerState.WON);
+
+                    }
+                }
+
+                if (currentPlayerIndex == 1) {
+
+                    if (cardType == playersList.get(0).getPlayersCard()) {
+
+                        this.setPlayerState(PlayerState.WON);
+                        playersList.get(0).setPlayerState(PlayerState.LOST);
+
+                    } else {
+
+                        this.setPlayerState(PlayerState.LOST);
+                        playersList.get(0).setPlayerState(PlayerState.WON);
+
+                    }
+                    return;
+                }
+            }
+        }
+    }
+
+    private void sendWonLostMessage() {
+
+        if (this.getPlayerState() == PlayerState.LOST || this.getPlayerState() == PlayerState.WON) {
+
+            if (this.getPlayerState() == PlayerState.LOST) {
+                messageToUser(LOSE);
+            }
+
+            if (this.getPlayerState() == PlayerState.WON) {
+                messageToUser(WIN);
+            }
+
+            // CLOSE CONNECTION
+            System.exit(0);
+        }
+    }
+
+    private void changePlayerState(int currentPlayerIndex, PlayerState playerState) {
+
+        if (currentPlayerIndex == 0) {
+            playersList.get(1).setPlayerState(playerState);
+        }
+
+        if (currentPlayerIndex == 1) {
+            playersList.get(0).setPlayerState(playerState);
+        }
+    }
+
+    private void checkAnswer(String[] lineArray, int currentPlayerIndex) {
+
+        if (lineArray[0].equals("/ask")
+                && this.getPlayerState() == PlayerState.CAN_ASK) {
+
+            CardType[] cardTypes = CardType.values();
+
+            checkPlayerAnswer(cardTypes, lineArray, currentPlayerIndex);
+            sendWonLostMessage();
+
+            this.setMaxQuestions(this.getMaxQuestions() - 1);
+
+            changePlayerState(currentPlayerIndex, PlayerState.CAN_ANSWER);
+            this.setPlayerState(PlayerState.WAITING);
+        }
+
+        if ((lineArray[0].equals("/yes")
+                || lineArray[0].equals("/no"))
+                && this.getPlayerState() == PlayerState.CAN_ANSWER) {
+
+            changePlayerState(currentPlayerIndex, PlayerState.WAITING);
+            this.setPlayerState(PlayerState.CAN_ASK);
+        }
+    }
+
+
+    private void checkIfCanSend(String[] lineArray, String line) {
+
+        if (this.getPlayerState() == PlayerState.CAN_ASK
+                && !lineArray[0].equals("/ask")) {
+
+            messageToUser(ASK_ERROR);
+
+        } else if (this.getPlayerState() == PlayerState.CAN_ANSWER
+                && (!lineArray[0].equals("/yes")
+                || !lineArray[0].equals("/no"))) {
+
+            messageToUser(QUESTION_ERROR);
+
+        } else {
+
+            // Broadcast message to all other clients
+            server.sendAll(name, line);
+        }
+    }
+
     public void send(String origClient, String message) {
 
         try {
@@ -122,16 +252,40 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    public void sendWaitingMessage(String origClient, String message) {
+    private void messageToUser(String message) {
 
         try {
-
-            out.write("Waiting for opponent to start the game");
+            out.write(message);
             out.newLine();
             out.flush();
 
         } catch (IOException ex) {
             System.out.println(SENDING_MESSAGE_ERROR + name + " : " + ex.getMessage());
         }
+    }
+
+    // SETTERS AND GETTERS
+    private void setPlayerState(PlayerState playerState) {
+        this.playerState = playerState;
+    }
+
+    private void setMaxQuestions(int maxQuestions) {
+        this.maxQuestions = maxQuestions;
+    }
+
+    private PlayerState getPlayerState() {
+        return playerState;
+    }
+
+    private int getMaxQuestions() {
+        return maxQuestions;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    private CardType getPlayersCard() {
+        return playersCard;
     }
 }

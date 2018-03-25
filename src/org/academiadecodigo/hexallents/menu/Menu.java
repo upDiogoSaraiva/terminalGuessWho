@@ -19,7 +19,15 @@ public class Menu {
 
     public void showMenu() {
 
+<<<<<<< HEAD:src/org/academiadecodigo/hexallents/menu/Menu.java
         String[] menuOptions = {Messages.GAME_OPTIONS_START, Messages.GAME_OPTIONS_QUIT};
+=======
+        String[] menuOptions =
+                { Messages.GAME_OPTIONS_START,
+                Messages.GAME_OPTIONS_INSTRUCTIONS,
+                Messages.GAME_OPTIONS_QUIT };
+
+>>>>>>> 306895357b701f575fd19e587c874f81522736dc:src/org/academiadecodigo/hexallents/Menu.java
         MenuInputScanner scanner = new MenuInputScanner(menuOptions);
         scanner.setMessage(Messages.GAME_OPTIONS);
 
