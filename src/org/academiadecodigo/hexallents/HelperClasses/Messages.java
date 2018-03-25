@@ -31,12 +31,8 @@ public class Messages {
             "2 - There is a maximum of 5 attempts to guess the opponent card. \n" +
             "3 - To ask questions type: /ask <question> \n" +
             "4 - To answer type: /yes || /no \n" +
-            "5 - To guess your opponent's card just need to type: /guess <card name>. \n" +
-            "6 - Exit game at any time by typing: /quit \n" +
-            "7 - Good luck <A/C_> ! \n";
-
-    public static final String GAME_OVER = "** Game Over **";
-
+            "5 - Exit game at any time by typing: /quit \n" +
+            "6 - Good luck <A/C_> ! \n";
 
     // Player
     public static final String YOUR_CARD_IS = "Your card is: ";
