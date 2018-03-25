@@ -23,11 +23,6 @@ public class ServerWorker implements Runnable {
     private CardType playersCard;
     private PlayerState playerState = PlayerState.WAITING;
 
-    /**
-     * @param name         the name of the thread handling this client connection
-     * @param playerSocket the client socket connection
-     * @throws IOException upon failure to open socket input and output streams
-     */
     public ServerWorker(String name, Socket playerSocket, Server server) throws IOException {
 
         this.server = server;
@@ -42,22 +37,6 @@ public class ServerWorker implements Runnable {
         printCard();
     }
 
-    private void printCard() {
-
-        try {
-
-            out.write(YOUR_CARD_IS + playersCard.getName() + "\n\n" + playersCard.getAsci());
-            out.newLine();
-            out.flush();
-
-        } catch (IOException ex) {
-            System.out.println(SENDING_MESSAGE_ERROR + name + " : " + ex.getMessage());
-        }
-    }
-
-    /**
-     * @see Thread#run()
-     */
     @Override
     public void run() {
 
@@ -69,7 +48,6 @@ public class ServerWorker implements Runnable {
 
             // SET INITIAL PLAYER STATES
             setInitialStates();
-
 
             // QUESTIONS LOOP
             while (maxQuestions != 0) {
@@ -95,36 +73,8 @@ public class ServerWorker implements Runnable {
                     String[] lineArray = line.split(" ", 2);
 
                     // MESSAGE PLAYER SENDS
-                    if (lineArray[0].equals("/ask") && this.getPlayerState() == PlayerState.CAN_ASK) {
-
-                        CardType[] cardTypes = CardType.values();
-
-                        checkPlayerAnswer(cardTypes, lineArray, currentPlayerIndex);
-                        sendWonLostMessage();
-
-                        this.setMaxQuestions(this.getMaxQuestions() - 1);
-
-                        changePlayerState(currentPlayerIndex, PlayerState.CAN_ANSWER);
-                        this.setPlayerState(PlayerState.WAITING);
-                    }
-
-
-                    checkYesNo(lineArray, currentPlayerIndex);
-
-                    if (this.getPlayerState() == PlayerState.CAN_ASK && !lineArray[0].equals("/ask")) {
-
-                        messageToUser(ASK_ERROR);
-
-                    } else if (this.getPlayerState() == PlayerState.CAN_ANSWER &&
-                            (!lineArray[0].equals("/yes") || !lineArray[0].equals("/no"))) {
-
-                        messageToUser(QUESTION_ERROR);
-
-                    } else {
-
-                        // Broadcast message to all other clients
-                        server.sendAll(name, line);
-                    }
+                    checkAnswer(lineArray, currentPlayerIndex);
+                    checkIfCanSend(lineArray, line);
                 }
             }
 
@@ -135,26 +85,20 @@ public class ServerWorker implements Runnable {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // PRIVATE METHODS
+    private void printCard() {
+
+        try {
+
+            out.write(YOUR_CARD_IS + playersCard.getName() + "\n\n" + playersCard.getAsci());
+            out.newLine();
+            out.flush();
+
+        } catch (IOException ex) {
+            System.out.println(SENDING_MESSAGE_ERROR + name + " : " + ex.getMessage());
+        }
+    }
+
     private void setInitialStates() {
 
         if (playersList.size() == 1) {
@@ -221,8 +165,6 @@ public class ServerWorker implements Runnable {
         }
     }
 
-
-
     private void sendWonLostMessage() {
 
         if (this.getPlayerState() == PlayerState.LOST || this.getPlayerState() == PlayerState.WON) {
@@ -251,7 +193,21 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    private void checkYesNo(String[] lineArray, int currentPlayerIndex) {
+    private void checkAnswer(String[] lineArray, int currentPlayerIndex) {
+
+        if (lineArray[0].equals("/ask")
+                && this.getPlayerState() == PlayerState.CAN_ASK) {
+
+            CardType[] cardTypes = CardType.values();
+
+            checkPlayerAnswer(cardTypes, lineArray, currentPlayerIndex);
+            sendWonLostMessage();
+
+            this.setMaxQuestions(this.getMaxQuestions() - 1);
+
+            changePlayerState(currentPlayerIndex, PlayerState.CAN_ANSWER);
+            this.setPlayerState(PlayerState.WAITING);
+        }
 
         if ((lineArray[0].equals("/yes")
                 || lineArray[0].equals("/no"))
@@ -263,16 +219,26 @@ public class ServerWorker implements Runnable {
     }
 
 
+    private void checkIfCanSend(String[] lineArray, String line) {
 
+        if (this.getPlayerState() == PlayerState.CAN_ASK
+                && !lineArray[0].equals("/ask")) {
 
+            messageToUser(ASK_ERROR);
 
+        } else if (this.getPlayerState() == PlayerState.CAN_ANSWER
+                && (!lineArray[0].equals("/yes")
+                || !lineArray[0].equals("/no"))) {
 
-    /**
-     * Send a message to the client served by this thread
-     *
-     * @param origClient the name of the client thread the message originated from
-     * @param message    the message to send
-     */
+            messageToUser(QUESTION_ERROR);
+
+        } else {
+
+            // Broadcast message to all other clients
+            server.sendAll(name, line);
+        }
+    }
+
     public void send(String origClient, String message) {
 
         try {
@@ -322,6 +288,4 @@ public class ServerWorker implements Runnable {
     private CardType getPlayersCard() {
         return playersCard;
     }
-
-
 }

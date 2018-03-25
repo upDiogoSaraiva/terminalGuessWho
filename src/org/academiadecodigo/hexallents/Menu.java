@@ -18,7 +18,11 @@ public class Menu {
 
     private void showMenu() {
 
-        String[] menuOptions = {Messages.GAME_OPTIONS_START, Messages.GAME_OPTIONS_INSTRUCTIONS, Messages.GAME_OPTIONS_QUIT};
+        String[] menuOptions =
+                { Messages.GAME_OPTIONS_START,
+                Messages.GAME_OPTIONS_INSTRUCTIONS,
+                Messages.GAME_OPTIONS_QUIT };
+
         MenuInputScanner scanner = new MenuInputScanner(menuOptions);
         scanner.setMessage(Messages.GAME_OPTIONS);
 

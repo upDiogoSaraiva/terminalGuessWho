@@ -16,11 +16,9 @@ public class Messages {
 
     // Menu Options
     public static final String GAME_OPTIONS = "Select an option";
-
     public static final String GAME_OPTIONS_START = "Start";
     public static final String GAME_OPTIONS_INSTRUCTIONS = "Instructions";
     public static final String GAME_OPTIONS_QUIT = "Quit";
-
     public static final String GAME_STARTED =
         "   ____                        ____  _             _           _ \n" +
         "  / ___| __ _ _ __ ___   ___  / ___|| |_ __ _ _ __| |_ ___  __| |\n" +
@@ -34,8 +32,6 @@ public class Messages {
 
     // Player
     public static final String YOUR_CARD_IS = "Your card is: ";
-
-    public static final String TRYING_ESTABLISH_CONNECTION = "Trying to establish connection";
     public static final String INVALID_PORT = "Invalid port number ";
     public static final String UNKNOWN_HOST = "Unknown host: ";
 

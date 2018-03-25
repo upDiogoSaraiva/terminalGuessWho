@@ -17,11 +17,6 @@ public class Player {
     // The client socket
     private Socket socket;
 
-    /**
-     * Bootstraps the chat client
-     *
-     * @param args command line arguments
-     */
     public static void main(String args[]) {
 
         String host = DEFAULT_HOST;
@@ -38,25 +33,15 @@ public class Player {
 
             System.out.println(INVALID_PORT + host);
             System.out.print(1);
-
         }
     }
 
-    /**
-     * Connects to the specified hostname/port
-     *
-     * @param serverName the hostname of the server to connect to
-     * @param serverPort the tcp port to connect to
-     */
     public Player(String serverName, int serverPort) {
 
         try {
 
             // Connect to server
             socket = new Socket(serverName, serverPort);
-            //System.out.println("Connected: " + socket);
-
-           // System.out.println("Start asking questions");
             start();
 
         } catch (UnknownHostException ex) {
@@ -68,9 +53,7 @@ public class Player {
 
             System.out.println(ex.getMessage());
             System.exit(1);
-
         }
-
     }
 
     // Starts handling messages
@@ -105,7 +88,6 @@ public class Player {
                 sockOut.write(consoleMessage);
                 sockOut.newLine();
                 sockOut.flush();
-
             }
 
             try {
@@ -128,9 +110,6 @@ public class Player {
     // Runnable to handle incoming messages from the server
     private class ChatRunnable implements Runnable {
 
-        /**
-         * @see Thread#run()
-         */
         @Override
         public void run() {
 
@@ -170,7 +149,6 @@ public class Player {
 
             // Server closed, but main thread blocked in console readline
             System.exit(0);
-
         }
     }
 }
