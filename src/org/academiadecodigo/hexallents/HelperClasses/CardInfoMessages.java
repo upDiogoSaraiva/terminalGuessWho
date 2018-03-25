@@ -567,6 +567,4 @@ public class CardInfoMessages {
             "MMMMMMMMMMMMMMMXd;,:xKWWWNNNKd,       .';cx0XWMMMM\n" +
             "MMMMMMMMMMMMMN0o,;l:,l0X00k:.              ..;lxKW\n" +
             "MMMMMMMMMMMN0c..  .:ld0XXXKd.                   'l\n";
-
-
 }

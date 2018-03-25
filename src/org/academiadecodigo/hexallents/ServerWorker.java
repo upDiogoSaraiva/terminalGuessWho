@@ -1,9 +1,7 @@
 package org.academiadecodigo.hexallents;
 
 import static org.academiadecodigo.hexallents.HelperClasses.Messages.*;
-
 import org.academiadecodigo.hexallents.HelperClasses.Random;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
@@ -19,13 +17,11 @@ public class ServerWorker implements Runnable {
     final private BufferedReader in;
     final private BufferedWriter out;
 
-    private CardType playersCard;
-
-    private PlayerState playerState = PlayerState.WAITING;
-
     private final List<ServerWorker> playersList;
     private int maxQuestions = 5;
 
+    private CardType playersCard;
+    private PlayerState playerState = PlayerState.WAITING;
 
     /**
      * @param name         the name of the thread handling this client connection
@@ -38,13 +34,11 @@ public class ServerWorker implements Runnable {
         this.name = name;
         this.playerSocket = playerSocket;
 
-        playersCard = CardType.values()[Random.generateRandomCard()];
-
         in = new BufferedReader(new InputStreamReader(playerSocket.getInputStream()));
         out = new BufferedWriter(new OutputStreamWriter(playerSocket.getOutputStream()));
 
         playersList = server.getWorkers();
-
+        playersCard = CardType.values()[Random.generateRandomCard()];
         printCard();
     }
 
@@ -61,37 +55,11 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    private void setPlayerState(PlayerState playerState) {
-        this.playerState = playerState;
-    }
-
-    private PlayerState getPlayerState() {
-        return playerState;
-    }
-
-    private int getMaxQuestions() {
-        return maxQuestions;
-    }
-
-    private void setMaxQuestions(int maxQuestions) {
-        this.maxQuestions = maxQuestions;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     /**
      * @see Thread#run()
      */
     @Override
     public void run() {
-
-        System.out.println(playersList.size());
-
-        // sw(swList.size()-1);
-
-        System.out.println(playersList.get(playersList.size() - 1).getPlayerState());
 
         System.out.println("Thread " + name + " started");
 
@@ -99,35 +67,15 @@ public class ServerWorker implements Runnable {
 
             int currentPlayerIndex = playersList.indexOf(this);
 
-            /* SET INITIAL PLAYER STATES */
-            if (playersList.size() == 1) {
-                this.setPlayerState(PlayerState.CAN_ASK);
-                System.out.println("Player 1 ---> " + this.getPlayerState());
-            }
-
-            if (playersList.size() == 2) {
-                this.setPlayerState(PlayerState.WAITING);
-                System.out.println("Player 2 ---> " + this.getPlayerState());
-            }
+            // SET INITIAL PLAYER STATES
+            setInitialStates();
 
 
+            // QUESTIONS LOOP
             while (maxQuestions != 0) {
 
-                /* MESSAGES TO PLAYER */
-                if (this.getPlayerState() == PlayerState.CAN_ASK) {
-                    messageToUser("Ask a question (/ask): ");
-                }
-
-                if (this.getPlayerState() == PlayerState.WAITING) {
-                    messageToUser("Waiting for your opponent: ");
-                }
-
-                if (this.getPlayerState() == PlayerState.CAN_ANSWER) {
-                    messageToUser("Write your answer (/yes or /no): ");
-                }
-
-                System.out.println("player 1 state: " + playersList.get(0).getPlayerState());
-                System.out.println("player 2 state: " + playersList.get(playersList.size() - 1).getPlayerState());
+                // PROMPT MESSAGES TO PLAYER
+                promptMessages();
 
                 String line = null;
 
@@ -147,115 +95,35 @@ public class ServerWorker implements Runnable {
                     String[] lineArray = line.split(" ", 2);
 
                     // MESSAGE PLAYER SENDS
-                    if (lineArray[0].equals("/ask") && this.getPlayerState() == PlayerState.CAN_ASK) { // recebe /ask é porque está Waiting
+                    if (lineArray[0].equals("/ask") && this.getPlayerState() == PlayerState.CAN_ASK) {
 
                         CardType[] cardTypes = CardType.values();
 
-                        for (CardType cardType : cardTypes) {
+                        checkPlayerAnswer(cardTypes, lineArray, currentPlayerIndex);
+                        sendWonLostMessage();
 
-                            System.out.println(lineArray[1]);
-                            System.out.println(lineArray[1].trim());
-
-
-                            if (lineArray[1].toLowerCase().trim().contains(cardType.getName().toLowerCase())) {
-
-                                if (currentPlayerIndex == 0) {
-
-                                    if (cardType == playersList.get(1).getPlayersCard()) {
-                                        this.setPlayerState(PlayerState.WON);
-                                        playersList.get(1).setPlayerState(PlayerState.LOST);
-                                        /*messageToUser(WIN);
-                                        System.exit(0);*/
-
-                                    } else {
-                                        this.setPlayerState(PlayerState.LOST);
-                                        playersList.get(1).setPlayerState(PlayerState.WON);
-                                        /*messageToUser(LOSE);
-                                        System.exit(0);*/
-                                    }
-                                }
-
-                                if (currentPlayerIndex == 1) {
-
-                                    if (cardType == playersList.get(0).getPlayersCard()) {
-                                        this.setPlayerState(PlayerState.WON);
-                                        playersList.get(0).setPlayerState(PlayerState.LOST);
-                                        /*messageToUser(WIN);
-                                        System.exit(0);*/
-                                    } else {
-                                        this.setPlayerState(PlayerState.LOST);
-                                        playersList.get(0).setPlayerState(PlayerState.WON);
-                                        /*messageToUser(LOSE);
-                                        System.exit(0);*/
-                                    }
-                                    return;
-                                }
-                            }
-                        }
-
-
-                        if (this.getPlayerState() == PlayerState.LOST || this.getPlayerState() == PlayerState.WON) {
-
-                            if (this.getPlayerState() == PlayerState.LOST) {
-                                messageToUser(LOSE);
-                            }
-
-                            if (this.getPlayerState() == PlayerState.WON) {
-                                messageToUser(WIN);
-                            }
-                            System.exit(0);
-                        }
-
-                        System.out.println(this.getMaxQuestions());
                         this.setMaxQuestions(this.getMaxQuestions() - 1);
-                        System.out.println(this.getMaxQuestions());
 
-                        if (currentPlayerIndex == 0) {
-                            playersList.get(1).setPlayerState(PlayerState.CAN_ANSWER);
-                        }
-
-                        if (currentPlayerIndex == 1) {
-                            playersList.get(0).setPlayerState(PlayerState.CAN_ANSWER);
-                        }
-
+                        changePlayerState(currentPlayerIndex, PlayerState.CAN_ANSWER);
                         this.setPlayerState(PlayerState.WAITING);
                     }
 
 
-                    if ((lineArray[0].equals("/yes") || lineArray[0].equals("/no")) && this.getPlayerState() == PlayerState.CAN_ANSWER) {
+                    checkYesNo(lineArray, currentPlayerIndex);
 
-                        if (currentPlayerIndex == 0) {
-                            playersList.get(1).setPlayerState(PlayerState.WAITING);
-                        }
+                    if (this.getPlayerState() == PlayerState.CAN_ASK && !lineArray[0].equals("/ask")) {
 
-                        if (currentPlayerIndex == 1) {
-                            playersList.get(0).setPlayerState(PlayerState.WAITING);
-                        }
-                        this.setPlayerState(PlayerState.CAN_ASK);
-                    }
+                        messageToUser(ASK_ERROR);
 
+                    } else if (this.getPlayerState() == PlayerState.CAN_ANSWER &&
+                            (!lineArray[0].equals("/yes") || !lineArray[0].equals("/no"))) {
 
-                    String LIST_CMD = "/LIST";
-                    if (line.toUpperCase().equals(LIST_CMD)) {
-
-                        send("Clients Connected", server.listClients());
+                        messageToUser(QUESTION_ERROR);
 
                     } else {
 
-
-                        if(this.getPlayerState() == PlayerState.CAN_ASK && !lineArray[0].equals("/ask")){
-                            messageToUser("To ask questions please use the format: /ask <your question>");
-                        } else if (this.getPlayerState() == PlayerState.CAN_ANSWER &&
-                                (!lineArray[0].equals("/yes") || !lineArray[0].equals("/no"))){
-                            messageToUser("To answer your opponent's question please use: /yes or /no");
-                        } else {
-                            // Broadcast message to all other clients
-                            server.sendAll(name, line);
-                        }
-
-
-
-
+                        // Broadcast message to all other clients
+                        server.sendAll(name, line);
                     }
                 }
             }
@@ -266,6 +134,138 @@ public class ServerWorker implements Runnable {
             System.out.println(RECEIVING_ERROR + name + " : " + ex.getMessage());
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // PRIVATE METHODS
+    private void setInitialStates() {
+
+        if (playersList.size() == 1) {
+            this.setPlayerState(PlayerState.CAN_ASK);
+        }
+
+        if (playersList.size() == 2) {
+            this.setPlayerState(PlayerState.WAITING);
+        }
+    }
+
+    private void promptMessages() {
+
+        switch (this.getPlayerState()) {
+            case CAN_ASK:
+                messageToUser(ASK_A_QUESTION);
+                break;
+            case WAITING:
+                messageToUser(WAITING_FOR_OPONNENT);
+                break;
+            case CAN_ANSWER:
+                messageToUser(WRITE_YOUR_ANSWER);
+                break;
+        }
+    }
+
+    private void checkPlayerAnswer(CardType[] cardTypes, String[] lineArray, int currentPlayerIndex) {
+
+        for (CardType cardType : cardTypes) {
+
+            if (lineArray[1].toLowerCase().trim().contains(cardType.getName().toLowerCase())) {
+
+                if (currentPlayerIndex == 0) {
+
+                    if (cardType == playersList.get(1).getPlayersCard()) {
+
+                        this.setPlayerState(PlayerState.WON);
+                        playersList.get(1).setPlayerState(PlayerState.LOST);
+
+                    } else {
+
+                        this.setPlayerState(PlayerState.LOST);
+                        playersList.get(1).setPlayerState(PlayerState.WON);
+
+                    }
+                }
+
+                if (currentPlayerIndex == 1) {
+
+                    if (cardType == playersList.get(0).getPlayersCard()) {
+
+                        this.setPlayerState(PlayerState.WON);
+                        playersList.get(0).setPlayerState(PlayerState.LOST);
+
+                    } else {
+
+                        this.setPlayerState(PlayerState.LOST);
+                        playersList.get(0).setPlayerState(PlayerState.WON);
+
+                    }
+                    return;
+                }
+            }
+        }
+    }
+
+
+
+    private void sendWonLostMessage() {
+
+        if (this.getPlayerState() == PlayerState.LOST || this.getPlayerState() == PlayerState.WON) {
+
+            if (this.getPlayerState() == PlayerState.LOST) {
+                messageToUser(LOSE);
+            }
+
+            if (this.getPlayerState() == PlayerState.WON) {
+                messageToUser(WIN);
+            }
+
+            // CLOSE CONNECTION
+            System.exit(0);
+        }
+    }
+
+    private void changePlayerState(int currentPlayerIndex, PlayerState playerState) {
+
+        if (currentPlayerIndex == 0) {
+            playersList.get(1).setPlayerState(playerState);
+        }
+
+        if (currentPlayerIndex == 1) {
+            playersList.get(0).setPlayerState(playerState);
+        }
+    }
+
+    private void checkYesNo(String[] lineArray, int currentPlayerIndex) {
+
+        if ((lineArray[0].equals("/yes")
+                || lineArray[0].equals("/no"))
+                && this.getPlayerState() == PlayerState.CAN_ANSWER) {
+
+            changePlayerState(currentPlayerIndex, PlayerState.WAITING);
+            this.setPlayerState(PlayerState.CAN_ASK);
+        }
+    }
+
+
+
+
+
 
     /**
      * Send a message to the client served by this thread
@@ -298,7 +298,30 @@ public class ServerWorker implements Runnable {
         }
     }
 
+    // SETTERS AND GETTERS
+    private void setPlayerState(PlayerState playerState) {
+        this.playerState = playerState;
+    }
+
+    private void setMaxQuestions(int maxQuestions) {
+        this.maxQuestions = maxQuestions;
+    }
+
+    private PlayerState getPlayerState() {
+        return playerState;
+    }
+
+    private int getMaxQuestions() {
+        return maxQuestions;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     private CardType getPlayersCard() {
         return playersCard;
     }
+
+
 }

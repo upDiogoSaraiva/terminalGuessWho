@@ -15,5 +15,4 @@ public class Random {
     public static int generateRandomCard() {
         return Random.generateRandomInt(CardType.values().length);
     }
-
 }

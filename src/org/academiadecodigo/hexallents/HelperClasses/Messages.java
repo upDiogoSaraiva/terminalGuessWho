@@ -62,6 +62,12 @@ public class Messages {
 
     // ServerWorker
     public static final String SENDING_MESSAGE_ERROR = "Error sending message to Player ";
+    public static final String ASK_A_QUESTION = "Ask a question (/ask): ";
+    public static final String WAITING_FOR_OPONNENT = "Waiting for your opponent: ";
+    public static final String WRITE_YOUR_ANSWER = "Write your answer (/yes or /no): ";
+    public static final String ASK_ERROR = "To ask questions please use the format: /ask <your question>";
+    public static final String QUESTION_ERROR = "To answer your opponent's question please use: /yes or /no";
+
 
     // Winning / Losing
     public static final String WIN =

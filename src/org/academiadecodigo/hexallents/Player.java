@@ -28,8 +28,6 @@ public class Player {
 
         try {
 
-            System.out.println(TRYING_ESTABLISH_CONNECTION);
-
             System.out.println(GAME_NAME);
 
             new Menu();
