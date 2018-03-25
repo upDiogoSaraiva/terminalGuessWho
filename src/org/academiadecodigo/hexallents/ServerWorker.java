@@ -1,6 +1,9 @@
 package org.academiadecodigo.hexallents;
 
+import static org.academiadecodigo.hexallents.HelperClasses.Messages.*;
+
 import org.academiadecodigo.hexallents.HelperClasses.Random;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
@@ -20,7 +23,14 @@ public class ServerWorker implements Runnable {
 
     private CardType playersCard;
 
-    public enum PlayerState { CAN_ASK, CAN_ANSWER, WAITING}
+    public enum PlayerState {
+        CAN_ASK,
+        CAN_ANSWER,
+        WAITING,
+        WON,
+        LOST
+    }
+
     private PlayerState playerState = PlayerState.WAITING;
 
     private final List<ServerWorker> playersList;
@@ -91,15 +101,13 @@ public class ServerWorker implements Runnable {
 
         // sw(swList.size()-1);
 
-        System.out.println(playersList.get(playersList.size()-1).getPlayerState());
+        System.out.println(playersList.get(playersList.size() - 1).getPlayerState());
 
         System.out.println("Thread " + name + " started");
 
         try {
 
             int currentPlayerIndex = playersList.indexOf(this);
-            System.out.println("index: " + currentPlayerIndex);
-
 
             /* SET INITIAL PLAYER STATES */
             if (playersList.size() == 1) {
@@ -117,7 +125,7 @@ public class ServerWorker implements Runnable {
 
                 /* MESSAGES TO PLAYER */
                 if (this.getPlayerState() == PlayerState.CAN_ASK) {
-                    messageToUser("Ask a question: ");
+                    messageToUser("Ask a question (/ask): ");
                 }
 
                 if (this.getPlayerState() == PlayerState.WAITING) {
@@ -125,12 +133,11 @@ public class ServerWorker implements Runnable {
                 }
 
                 if (this.getPlayerState() == PlayerState.CAN_ANSWER) {
-                    messageToUser("Write your answer: ");
+                    messageToUser("Write your answer (/yes or /no): ");
                 }
 
-
                 System.out.println("player 1 state: " + playersList.get(0).getPlayerState());
-                System.out.println("player 2 state: " + playersList.get(playersList.size() -1).getPlayerState());
+                System.out.println("player 2 state: " + playersList.get(playersList.size() - 1).getPlayerState());
 
                 String line = null;
 
@@ -139,7 +146,10 @@ public class ServerWorker implements Runnable {
 
                 if (line == null) {
 
-                    System.out.println("Player " + name + " closed, exiting...");
+                    System.out.println("Playerfwqffwfwfew " + name + " closed, exiting...");
+
+
+
 
                     in.close();
                     playerSocket.close();
@@ -147,11 +157,8 @@ public class ServerWorker implements Runnable {
 
                 } else if (!line.isEmpty()) {
 
-                    String[] lineArray = line.split(" ");
+                    String[] lineArray = line.split(" ", 2);
 
-                    if (maxQuestions == 3) {
-                        System.out.println("3");
-                    }
 
                     System.out.println("maxQuestions " + maxQuestions);
 
@@ -160,43 +167,65 @@ public class ServerWorker implements Runnable {
 
                         CardType[] cardTypes = CardType.values();
 
+                        for (CardType cardType : cardTypes) {
+
+                            System.out.println(lineArray[1]);
+                            System.out.println(lineArray[1].trim());
 
 
+                            if (lineArray[1].toLowerCase().trim().contains(cardType.getName().toLowerCase())) {
 
-                        for (CardType cardType: cardTypes) {
-                            if(lineArray[1].toLowerCase().contains(cardType.getName().toLowerCase())){
                                 if (currentPlayerIndex == 0) {
 
-                                    if(cardType == playersList.get(1).getPlayersCard()){
-                                        // todo victory
-                                        System.out.println("ganhou!!!!!!!!");
+                                    if (cardType == playersList.get(1).getPlayersCard()) {
+                                        this.setPlayerState(PlayerState.WON);
+                                        playersList.get(1).setPlayerState(PlayerState.LOST);
+                                        /*messageToUser(WIN);
+                                        System.exit(0);*/
+
                                     } else {
-                                        System.out.println("perdeu crl");
-                                        //todo defeat
+                                        this.setPlayerState(PlayerState.LOST);
+                                        playersList.get(1).setPlayerState(PlayerState.WON);
+                                        /*messageToUser(LOSE);
+                                        System.exit(0);*/
                                     }
                                 }
 
                                 if (currentPlayerIndex == 1) {
 
-                                    if(cardType == playersList.get(0).getPlayersCard()){
-                                        // todo victory
-                                        System.out.println("3 amigos e uma conhecida");
+                                    if (cardType == playersList.get(0).getPlayersCard()) {
+                                        this.setPlayerState(PlayerState.WON);
+                                        playersList.get(0).setPlayerState(PlayerState.LOST);
+                                        /*messageToUser(WIN);
+                                        System.exit(0);*/
                                     } else {
-                                        System.out.println("fica a dica");
-                                        //todo defeat
+                                        this.setPlayerState(PlayerState.LOST);
+                                        playersList.get(0).setPlayerState(PlayerState.WON);
+                                        /*messageToUser(LOSE);
+                                        System.exit(0);*/
                                     }
+                                    return;
                                 }
-
                             }
                         }
 
-                        //TODO avaliar lineArray[1] -> percorrer o enum e ver se contains
-                        //TODO avaliar tudo lowercase
-                        // se for um dos nomes ganha e sai do while / perde
+
+                        if (this.getPlayerState() == PlayerState.LOST || this.getPlayerState() == PlayerState.WON) {
+
+                            if (this.getPlayerState() == PlayerState.LOST) {
+                                messageToUser(LOSE);
+                            }
+
+                            if (this.getPlayerState() == PlayerState.WON) {
+                                messageToUser(WIN);
+                            }
+                            System.exit(0);
+                        }
+
 
 
                         System.out.println(this.getMaxQuestions());
-                        this.setMaxQuestions(this.getMaxQuestions()-1);
+                        this.setMaxQuestions(this.getMaxQuestions() - 1);
                         System.out.println(this.getMaxQuestions());
 
                         if (currentPlayerIndex == 0) {
@@ -212,8 +241,6 @@ public class ServerWorker implements Runnable {
                     }
 
 
-
-
                     if ((lineArray[0].equals("/yes") || lineArray[0].equals("/no")) && this.getPlayerState() == PlayerState.CAN_ANSWER) {
 
                         if (currentPlayerIndex == 0) {
@@ -225,10 +252,6 @@ public class ServerWorker implements Runnable {
                         }
                         this.setPlayerState(PlayerState.CAN_ASK);
                     }
-
-
-
-
 
 
                     String LIST_CMD = "/LIST";
@@ -246,9 +269,6 @@ public class ServerWorker implements Runnable {
 
 
             // mensagem acabou o jogo
-
-
-
 
 
             //workers.remove(this);
@@ -293,11 +313,9 @@ public class ServerWorker implements Runnable {
     }*/
 
 
-
     public void messageToUser(String message) {
 
         try {
-
             out.write(message);
             out.newLine();
             out.flush();
