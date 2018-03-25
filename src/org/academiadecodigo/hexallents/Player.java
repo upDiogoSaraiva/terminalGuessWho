@@ -1,6 +1,12 @@
 package org.academiadecodigo.hexallents;
 
 import static org.academiadecodigo.hexallents.HelperClasses.Messages.*;
+<<<<<<< HEAD
+import org.academiadecodigo.hexallents.HelperClasses.Random;
+import org.academiadecodigo.hexallents.menu.Menu;
+
+=======
+>>>>>>> 306895357b701f575fd19e587c874f81522736dc
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
@@ -13,6 +19,7 @@ public class Player {
 
     private final static int DEFAULT_PORT = 6666;
     private final static String DEFAULT_HOST = "localhost";
+    private Menu menu;
 
     // The client socket
     private Socket socket;
