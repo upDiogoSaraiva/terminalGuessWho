@@ -17,8 +17,6 @@ public class Player {
 
     private CardType playersCard;
 
-    private int maxQuestions = 5;
-
     // The client socket
     private Socket socket;
 
@@ -56,11 +54,6 @@ public class Player {
      * @param serverPort the tcp port to connect to
      */
     public Player(String serverName, int serverPort) {
-
-        playersCard = CardType.values()[Random.generateRandomCard()];
-
-        System.out.println(YOUR_CARD_IS + playersCard.getName() + "\n");
-        System.out.println(playersCard.getAsci());
 
         try {
 
