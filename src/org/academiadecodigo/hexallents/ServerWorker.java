@@ -1,7 +1,9 @@
 package org.academiadecodigo.hexallents;
 
 import static org.academiadecodigo.hexallents.HelperClasses.Messages.*;
+
 import org.academiadecodigo.hexallents.HelperClasses.Random;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
@@ -52,8 +54,24 @@ public class ServerWorker implements Runnable {
             // QUESTIONS LOOP
             while (maxQuestions != 0) {
 
-                // PROMPT MESSAGES TO PLAYER
-                promptMessages();
+                System.out.println(playersList.get(0).getPlayerState());
+                System.out.println(playersList.get(playersList.size() - 1).getPlayerState());
+
+                /* MESSAGES TO PLAYER */
+                if (this.getPlayerState() == PlayerState.CAN_ASK) {
+                    messageToUser("Ask a question (/ask): ");
+                    System.out.println("akjsh");
+                }
+
+                if (this.getPlayerState() == PlayerState.WAITING) {
+                    messageToUser("Waiting for your opponent: ");
+                    System.out.println("waitingdsda");
+                }
+
+                if (this.getPlayerState() == PlayerState.CAN_ANSWER) {
+                    messageToUser("Write your answer (/yes or /no): ");
+                    System.out.println("oakokalnksjjdvghcjmdjsacb dm");
+                }
 
                 String line = null;
 
@@ -72,9 +90,54 @@ public class ServerWorker implements Runnable {
 
                     String[] lineArray = line.split(" ", 2);
 
+                    System.out.println("before MESSAGE PLAYER SENDS" + playersList.get(1).getPlayerState());
                     // MESSAGE PLAYER SENDS
-                    checkAnswer(lineArray, currentPlayerIndex);
-                    checkIfCanSend(lineArray, line);
+                    if (this.getPlayerState() == PlayerState.CAN_ASK && lineArray[0].equals("/ask")) {
+
+                        CardType[] cardTypes = CardType.values();
+
+                        //checkPlayerAnswer(cardTypes, lineArray, currentPlayerIndex);
+                        //sendWonLostMessage();
+
+                        this.setMaxQuestions(this.getMaxQuestions() - 1);
+
+                        if (currentPlayerIndex == 0) {
+                            playersList.get(1).setPlayerState(PlayerState.CAN_ANSWER);
+
+                        }
+
+                        if (currentPlayerIndex == 1) {
+                            playersList.get(0).setPlayerState(PlayerState.CAN_ANSWER);
+                        }
+                        checkIfCanSend(lineArray, line);
+                        this.setPlayerState(PlayerState.WAITING);
+                    }
+
+                    System.out.println("after first if" + playersList.get(1).getPlayerState());
+
+                    if (this.getPlayerState() == PlayerState.CAN_ANSWER &&
+                            (lineArray[0].equals("/yes") || lineArray[0].equals("/no"))) {
+
+                        if (currentPlayerIndex == 0) {
+                            playersList.get(1).setPlayerState(PlayerState.WAITING);
+                        }
+
+                        if (currentPlayerIndex == 1) {
+                            playersList.get(0).setPlayerState(PlayerState.WAITING);
+                        }
+                        checkIfCanSend(lineArray, line);
+                        this.setPlayerState(PlayerState.CAN_ASK);
+                    }
+
+
+                    System.out.println(playersList.get(0).getPlayerState());
+                    System.out.println(playersList.get(1).getPlayerState());
+
+                    //checkAnswer(lineArray, currentPlayerIndex);
+                    //checkIfCanSend(lineArray, line);
+                    System.out.println(playersList.get(0).getPlayerState());
+                    System.out.println(playersList.get(1).getPlayerState());
+
                 }
             }
 
@@ -182,18 +245,30 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    private void changePlayerState(int currentPlayerIndex, PlayerState playerState) {
+    private void changePlayerState1(int currentPlayerIndex) {
 
         if (currentPlayerIndex == 0) {
-            playersList.get(1).setPlayerState(playerState);
+            playersList.get(1).setPlayerState(PlayerState.CAN_ANSWER);
         }
 
         if (currentPlayerIndex == 1) {
-            playersList.get(0).setPlayerState(playerState);
+            playersList.get(0).setPlayerState(PlayerState.CAN_ANSWER);
         }
     }
 
-    private void checkAnswer(String[] lineArray, int currentPlayerIndex) {
+    private void changePlayerState2(int currentPlayerIndex) {
+
+        if (currentPlayerIndex == 0) {
+            playersList.get(1).setPlayerState(PlayerState.WAITING);
+        }
+
+        if (currentPlayerIndex == 1) {
+            playersList.get(0).setPlayerState(PlayerState.WAITING);
+        }
+    }
+
+
+    /*private void checkAnswer(String[] lineArray, int currentPlayerIndex) {
 
         if (lineArray[0].equals("/ask")
                 && this.getPlayerState() == PlayerState.CAN_ASK) {
@@ -205,7 +280,7 @@ public class ServerWorker implements Runnable {
 
             this.setMaxQuestions(this.getMaxQuestions() - 1);
 
-            changePlayerState(currentPlayerIndex, PlayerState.CAN_ANSWER);
+            changePlayerState1(currentPlayerIndex);
             this.setPlayerState(PlayerState.WAITING);
         }
 
@@ -213,24 +288,28 @@ public class ServerWorker implements Runnable {
                 || lineArray[0].equals("/no"))
                 && this.getPlayerState() == PlayerState.CAN_ANSWER) {
 
-            changePlayerState(currentPlayerIndex, PlayerState.WAITING);
+            changePlayerState2(currentPlayerIndex);
             this.setPlayerState(PlayerState.CAN_ASK);
         }
     }
-
+*/
 
     private void checkIfCanSend(String[] lineArray, String line) {
 
+        System.out.println("checkifcansend" + playersList.get(1).getPlayerState());
+        System.out.println(lineArray[0]);
         if (this.getPlayerState() == PlayerState.CAN_ASK
                 && !lineArray[0].equals("/ask")) {
 
+            System.out.println("nao entras aqui malandro");
             messageToUser(ASK_ERROR);
 
         } else if (this.getPlayerState() == PlayerState.CAN_ANSWER
-                && (!lineArray[0].equals("/yes")
-                || !lineArray[0].equals("/no"))) {
+                && (lineArray[0].equals("/yes") || lineArray[0].equals("/no"))) {
 
-            messageToUser(QUESTION_ERROR);
+            server.sendAll(name, line);
+            //System.out.println("nao entras aqui");
+            //messageToUser(QUESTION_ERROR);
 
         } else {
 
