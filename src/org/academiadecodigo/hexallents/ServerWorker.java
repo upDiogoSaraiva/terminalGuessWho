@@ -8,8 +8,6 @@ import java.io.*;
 import java.net.Socket;
 import java.util.List;
 
-import static org.academiadecodigo.hexallents.HelperClasses.Messages.*;
-
 /**
  * Created by GuessWho on 13/03/2018.
  */
@@ -22,14 +20,6 @@ public class ServerWorker implements Runnable {
     final private BufferedWriter out;
 
     private CardType playersCard;
-
-    public enum PlayerState {
-        CAN_ASK,
-        CAN_ANSWER,
-        WAITING,
-        WON,
-        LOST
-    }
 
     private PlayerState playerState = PlayerState.WAITING;
 
@@ -58,7 +48,7 @@ public class ServerWorker implements Runnable {
         printCard();
     }
 
-    public void printCard() {
+    private void printCard() {
 
         try {
 
@@ -71,19 +61,19 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    public void setPlayerState(PlayerState playerState) {
+    private void setPlayerState(PlayerState playerState) {
         this.playerState = playerState;
     }
 
-    public PlayerState getPlayerState() {
+    private PlayerState getPlayerState() {
         return playerState;
     }
 
-    public int getMaxQuestions() {
+    private int getMaxQuestions() {
         return maxQuestions;
     }
 
-    public void setMaxQuestions(int maxQuestions) {
+    private void setMaxQuestions(int maxQuestions) {
         this.maxQuestions = maxQuestions;
     }
 
@@ -121,7 +111,7 @@ public class ServerWorker implements Runnable {
             }
 
 
-            while (!playerSocket.isClosed()) {
+            while (maxQuestions != 0) {
 
                 /* MESSAGES TO PLAYER */
                 if (this.getPlayerState() == PlayerState.CAN_ASK) {
@@ -146,10 +136,7 @@ public class ServerWorker implements Runnable {
 
                 if (line == null) {
 
-                    System.out.println("Playerfwqffwfwfew " + name + " closed, exiting...");
-
-
-
+                    System.out.println("Player " + name + " closed, exiting...");
 
                     in.close();
                     playerSocket.close();
@@ -158,9 +145,6 @@ public class ServerWorker implements Runnable {
                 } else if (!line.isEmpty()) {
 
                     String[] lineArray = line.split(" ", 2);
-
-
-                    System.out.println("maxQuestions " + maxQuestions);
 
                     // MESSAGE PLAYER SENDS
                     if (lineArray[0].equals("/ask") && this.getPlayerState() == PlayerState.CAN_ASK) { // recebe /ask é porque está Waiting
@@ -222,8 +206,6 @@ public class ServerWorker implements Runnable {
                             System.exit(0);
                         }
 
-
-
                         System.out.println(this.getMaxQuestions());
                         this.setMaxQuestions(this.getMaxQuestions() - 1);
                         System.out.println(this.getMaxQuestions());
@@ -237,7 +219,6 @@ public class ServerWorker implements Runnable {
                         }
 
                         this.setPlayerState(PlayerState.WAITING);
-
                     }
 
 
@@ -261,17 +242,25 @@ public class ServerWorker implements Runnable {
 
                     } else {
 
-                        // Broadcast message to all other clients
-                        server.sendAll(name, line);
+
+                        if(this.getPlayerState() == PlayerState.CAN_ASK && !lineArray[0].equals("/ask")){
+                            messageToUser("To ask questions please use the format: /ask <your question>");
+                        } else if (this.getPlayerState() == PlayerState.CAN_ANSWER &&
+                                (!lineArray[0].equals("/yes") || !lineArray[0].equals("/no"))){
+                            messageToUser("To answer your opponent's question please use: /yes or /no");
+                        } else {
+                            // Broadcast message to all other clients
+                            server.sendAll(name, line);
+                        }
+
+
+
+
                     }
                 }
             }
 
-
-            // mensagem acabou o jogo
-
-
-            //workers.remove(this);
+            System.exit(0);
 
         } catch (IOException ex) {
             System.out.println(RECEIVING_ERROR + name + " : " + ex.getMessage());
@@ -297,23 +286,7 @@ public class ServerWorker implements Runnable {
         }
     }
 
-
-    // print messages to player console
-/*    public void sendWaitingMessage() {
-
-        try {
-
-            out.write("Waiting for an opponent to start the game.");
-            out.newLine();
-            out.flush();
-
-        } catch (IOException ex) {
-            System.out.println(SENDING_MESSAGE_ERROR + name + " : " + ex.getMessage());
-        }
-    }*/
-
-
-    public void messageToUser(String message) {
+    private void messageToUser(String message) {
 
         try {
             out.write(message);
@@ -325,7 +298,7 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    public CardType getPlayersCard() {
+    private CardType getPlayersCard() {
         return playersCard;
     }
 }
