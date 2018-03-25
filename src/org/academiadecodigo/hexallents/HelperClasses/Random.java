@@ -7,7 +7,7 @@ import org.academiadecodigo.hexallents.CardType;
  */
 public class Random {
 
-    public static int generateRandomInt(int max) {
+    private static int generateRandomInt(int max) {
         max = (int) Math.floor(max);
         return (int) Math.floor(Math.random() * (max));
     }
