@@ -1,9 +1,9 @@
-package org.academiadecodigo.hexallents.HelperClasses;
+package org.academiadecodigo.hexallents.helper_classes;
 
 /**
  * Created by codecadet on 18/03/2018.
  */
-public class CardInfoMessages {
+public class CardInfo {
 
     // Player's name
     public static final String RICARDO_NAME = "Ricardo";
@@ -168,7 +168,7 @@ public class CardInfoMessages {
             "MMMMMMMMMMMMMMMMMMMWKkolc::::cox0NMMMMMMMMMMMMWWWW\n" +
             "MMMMMMMMMMMMMMMMMXxc'...........,oKWWMMMMMMWWWWWWW\n" +
             "MMMMMMMMMMMMMMMXkl,.....;loddlc;'';d0NWWWWWWWWWWWW\n" +
-            "MMMMMMNIMMMMMW0dc:;,,',dXWWWWXKkl'..:kXWWNNNNNNNNN\n" +
+            "MMMMNINOKASMMW0dc:;,,',dXWWWWXKkl'..:kXWWNNNNNNNNN\n" +
             "MMMMMMMMMMMMNOdol::c:;oXMMMMWNKOl;...:OXXXXXXXXXXX\n" +
             "MMMMMMMMMMMNOdxdlcll;c0MMMMWNX0ko:,...cOKXXXXXKKKK\n" +
             "MMMMMMMMMMN0xkkocodc:dKWMMMX0kdoc;'...,x0KKKKKKKKK\n" +
@@ -192,7 +192,7 @@ public class CardInfoMessages {
 
     public static final String RITA_ASCII =
             "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMWMMMMMMMMMMMMMMMMWWWW\n" +
-            "MMMMMMMMMMMMMMMMMMWX0OxxkO00kxdxOXWWMMMMGIMMMMMWWW\n" +
+            "MMMMMMMMMMMMMMMMMMWX0OxxkO00kxdxOXWWMMMMGUNAMMMWWW\n" +
             "MMMMMMMMMMMMMMMWNOo;'............'cxXWMMMMMMMMMMWW\n" +
             "MMMMMMMMMMMMMMNOc'...  ..',;:;,.....,xNMMMMWWWWWWW\n" +
             "MMMMMMMMMMMMWKl'......:x0KXXK0Oxl:'...cKWMMWWWWWWW\n" +

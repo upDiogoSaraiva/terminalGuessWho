@@ -1,8 +1,11 @@
 package org.academiadecodigo.hexallents;
 
-import static org.academiadecodigo.hexallents.HelperClasses.Messages.*;
-import static org.academiadecodigo.hexallents.PlayerState.*;
-import org.academiadecodigo.hexallents.HelperClasses.Random;
+import static org.academiadecodigo.hexallents.helper_classes.Messages.*;
+import static org.academiadecodigo.hexallents.helper_classes.PlayerState.*;
+
+import org.academiadecodigo.hexallents.helper_classes.CardType;
+import org.academiadecodigo.hexallents.helper_classes.PlayerState;
+import org.academiadecodigo.hexallents.helper_classes.Random;
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
@@ -38,16 +41,6 @@ public class ServerWorker implements Runnable {
 
         checkIfCanPlay();
     }
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public void run() {
@@ -87,13 +80,7 @@ public class ServerWorker implements Runnable {
 
                         this.setMaxQuestions(this.getMaxQuestions() - 1);
 
-                        if (currentPlayerIndex == 0) {
-                            playersList.get(1).setPlayerState(CAN_ANSWER);
-                        }
-
-                        if (currentPlayerIndex == 1) {
-                            playersList.get(0).setPlayerState(CAN_ANSWER);
-                        }
+                        changePlayerStateAnswer(currentPlayerIndex);
 
                         checkIfCanSend(lineArray, line);
                         checkAnswer(lineArray,currentPlayerIndex);
@@ -103,13 +90,7 @@ public class ServerWorker implements Runnable {
                     if (this.getPlayerState() == CAN_ANSWER &&
                             (lineArray[0].equals("/yes") || lineArray[0].equals("/no"))) {
 
-                        if (currentPlayerIndex == 0) {
-                            playersList.get(1).setPlayerState(WAITING);
-                        }
-
-                        if (currentPlayerIndex == 1) {
-                            playersList.get(0).setPlayerState(WAITING);
-                        }
+                        changePlayerStateWaiting(currentPlayerIndex);
 
                         checkIfCanSend(lineArray, line);
                         checkAnswer(lineArray,currentPlayerIndex);
@@ -206,17 +187,40 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    private void sendWonLostMessage() {
+    private void sendWonLostMessage(int currentPlayerIndex) {
 
         if (this.getPlayerState() == LOST || this.getPlayerState() == WON) {
 
             if (this.getPlayerState() == LOST) {
                 messageToUser(LOSE);
+
+                if (currentPlayerIndex == 0) {
+                    playersList.get(1).messageToUser(WIN);
+                }
+
+                if (currentPlayerIndex == 1) {
+                    playersList.get(0).messageToUser(WIN);
+                }
             }
 
             if (this.getPlayerState() == WON) {
+
                 messageToUser(WIN);
+
+
+                if (currentPlayerIndex == 0) {
+                    playersList.get(1).messageToUser(LOSE);
+                }
+
+                if (currentPlayerIndex == 1) {
+                    playersList.get(0).messageToUser(LOSE);
+                }
             }
+
+
+
+
+
 
             // CLOSE CONNECTION
             System.exit(0);
@@ -254,7 +258,7 @@ public class ServerWorker implements Runnable {
             CardType[] cardTypes = CardType.values();
 
             checkPlayerAnswer(cardTypes, lineArray, currentPlayerIndex);
-            sendWonLostMessage();
+            sendWonLostMessage(currentPlayerIndex);
 
             this.setMaxQuestions(this.getMaxQuestions() - 1);
 
@@ -326,11 +330,13 @@ public class ServerWorker implements Runnable {
     }
 
     private void checkIfCanPlay() {
+
         if (server.getMaxPlayers() > 0) {
             messageToUser(INSTRUCTIONS);
             messageToUser(GAME_STARTED);
             printCard();
         }
+
     }
 
     // SETTERS AND GETTERS

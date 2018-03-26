@@ -1,4 +1,4 @@
-package org.academiadecodigo.hexallents;
+package org.academiadecodigo.hexallents.helper_classes;
 
 public enum PlayerState {
 
@@ -7,4 +7,5 @@ public enum PlayerState {
     WAITING,
     WON,
     LOST
+
 }

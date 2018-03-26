@@ -1,6 +1,6 @@
-package org.academiadecodigo.hexallents;
+package org.academiadecodigo.hexallents.helper_classes;
 
-import static org.academiadecodigo.hexallents.HelperClasses.CardInfoMessages.*;
+import static org.academiadecodigo.hexallents.helper_classes.CardInfo.*;
 
 /**
  * Created by GuessWho on 13/03/2018.

@@ -1,4 +1,4 @@
-package org.academiadecodigo.hexallents.HelperClasses;
+package org.academiadecodigo.hexallents.helper_classes;
 
 /**
  * Created by codecadet on 18/03/2018.

@@ -1,6 +1,4 @@
-package org.academiadecodigo.hexallents.HelperClasses;
-
-import org.academiadecodigo.hexallents.CardType;
+package org.academiadecodigo.hexallents.helper_classes;
 
 /**
  * Created by codecadet on 18/03/2018.
@@ -15,4 +13,5 @@ public class Random {
     public static int generateRandomCard() {
         return Random.generateRandomInt(CardType.values().length);
     }
+
 }

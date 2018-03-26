@@ -1,6 +1,6 @@
 package org.academiadecodigo.hexallents;
 
-import static org.academiadecodigo.hexallents.HelperClasses.Messages.*;
+import static org.academiadecodigo.hexallents.helper_classes.Messages.*;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
