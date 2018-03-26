@@ -53,7 +53,7 @@ public class ServerWorker implements Runnable {
             // QUESTIONS LOOP
             while (maxQuestions != 0) {
 
-                /* MESSAGES TO PLAYER */
+                // MESSAGES TO PLAYER
                 promptMessages();
 
                 // Blocks waiting for client messages
@@ -248,6 +248,15 @@ public class ServerWorker implements Runnable {
             this.setMaxQuestions(this.getMaxQuestions() - 1);
 
             changePlayerStateAnswer(currentPlayerIndex);
+
+            if (this == playersList.get(0)) {
+                playersList.get(1).messageToUser("Write your answer (/yes or /no): ");
+            }
+
+            if (this == playersList.get(1)) {
+                playersList.get(0).messageToUser("Write your answer (/yes or /no): ");
+            }
+
             this.setPlayerState(WAITING);
         }
 
