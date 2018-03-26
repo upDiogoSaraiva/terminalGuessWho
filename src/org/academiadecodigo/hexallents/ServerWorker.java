@@ -54,22 +54,10 @@ public class ServerWorker implements Runnable {
             while (maxQuestions != 0) {
 
                 /* MESSAGES TO PLAYER */
-                if (this.getPlayerState() == CAN_ASK) {
-                    messageToUser("Ask a question (/ask): ");
-                }
-
-                if (this.getPlayerState() == WAITING) {
-                    messageToUser("Waiting for your opponent: ");
-                }
-
-                if (this.getPlayerState() == CAN_ANSWER) {
-                    messageToUser("Write your answer (/yes or /no): ");
-                }
-
-                String line = null;
+                promptMessages();
 
                 // Blocks waiting for client messages
-                line = in.readLine();
+                String line = in.readLine();
 
                 if (line == null) {
 
@@ -126,6 +114,7 @@ public class ServerWorker implements Runnable {
         }
     }
 
+
     // PRIVATE METHODS
     private void printCard() {
 
@@ -153,16 +142,16 @@ public class ServerWorker implements Runnable {
 
     private void promptMessages() {
 
-        switch (this.getPlayerState()) {
-            case CAN_ASK:
-                messageToUser(ASK_A_QUESTION);
-                break;
-            case WAITING:
-                messageToUser(WAITING_FOR_OPONNENT);
-                break;
-            case CAN_ANSWER:
-                messageToUser(WRITE_YOUR_ANSWER);
-                break;
+        if (this.getPlayerState() == CAN_ASK) {
+            messageToUser("Ask a question (/ask): ");
+        }
+
+        if (this.getPlayerState() == CAN_ANSWER) {
+            messageToUser("Write your answer (/yes or /no): ");
+        }
+
+        if (this.getPlayerState() == WAITING) {
+            messageToUser("Waiting for your opponent: ");
         }
     }
 
@@ -274,20 +263,15 @@ public class ServerWorker implements Runnable {
 
     private void checkIfCanSend(String[] lineArray, String line) {
 
-        System.out.println("checkifcansend" + playersList.get(1).getPlayerState());
-        System.out.println(lineArray[0]);
         if (this.getPlayerState() == CAN_ASK
                 && !lineArray[0].equals("/ask")) {
 
-            System.out.println("nao entras aqui malandro");
             messageToUser(ASK_ERROR);
 
         } else if (this.getPlayerState() == CAN_ANSWER
-                && (lineArray[0].equals("/yes") || lineArray[0].equals("/no"))) {
+                && (!lineArray[0].equals("/yes") && !lineArray[0].equals("/no"))) {
 
-            server.sendAll(name, line);
-            //System.out.println("nao entras aqui");
-            //messageToUser(QUESTION_ERROR);
+            messageToUser(QUESTION_ERROR);
 
         } else {
 
@@ -336,10 +320,6 @@ public class ServerWorker implements Runnable {
 
     private int getMaxQuestions() {
         return maxQuestions;
-    }
-
-    public String getName() {
-        return name;
     }
 
     private CardType getPlayersCard() {
