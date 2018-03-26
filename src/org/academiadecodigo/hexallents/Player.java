@@ -14,7 +14,6 @@ public class Player {
 
     private final static int DEFAULT_PORT = 6666;
     private final static String DEFAULT_HOST = "localhost";
-    private Menu menu;
 
     // The client socket
     private Socket socket;

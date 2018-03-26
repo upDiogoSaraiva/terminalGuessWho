@@ -35,8 +35,19 @@ public class ServerWorker implements Runnable {
 
         playersList = server.getWorkers();
         playersCard = CardType.values()[Random.generateRandomCard()];
-        printCard();
+
+        checkIfCanPlay();
     }
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public void run() {
@@ -143,15 +154,15 @@ public class ServerWorker implements Runnable {
     private void promptMessages() {
 
         if (this.getPlayerState() == CAN_ASK) {
-            messageToUser("Ask a question (/ask): ");
+            messageToUser(ASK_A_QUESTION);
         }
 
         if (this.getPlayerState() == CAN_ANSWER) {
-            messageToUser("Write your answer (/yes or /no): ");
+            messageToUser(WRITE_YOUR_ANSWER);
         }
 
         if (this.getPlayerState() == WAITING) {
-            messageToUser("Waiting for your opponent: ");
+            messageToUser(WAITING_FOR_OPONNENT);
         }
     }
 
@@ -302,7 +313,7 @@ public class ServerWorker implements Runnable {
         }
     }
 
-    private void messageToUser(String message) {
+    public void messageToUser(String message) {
 
         try {
             out.write(message);
@@ -311,6 +322,14 @@ public class ServerWorker implements Runnable {
 
         } catch (IOException ex) {
             System.out.println(SENDING_MESSAGE_ERROR + name + " : " + ex.getMessage());
+        }
+    }
+
+    private void checkIfCanPlay() {
+        if (server.getMaxPlayers() > 0) {
+            messageToUser(INSTRUCTIONS);
+            messageToUser(GAME_STARTED);
+            printCard();
         }
     }
 

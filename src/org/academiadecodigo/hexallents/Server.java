@@ -16,6 +16,8 @@ public class Server {
     private final static int DEFAULT_PORT = 6666;
     private final List<ServerWorker> workers = Collections.synchronizedList(new ArrayList<ServerWorker>());
 
+    private int maxPlayers = 2;
+
     public static void main(String[] args) {
 
         int port = DEFAULT_PORT;
@@ -50,7 +52,7 @@ public class Server {
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println("Server started: " + serverSocket);
 
-            while (true) {
+            while (maxPlayers > 0) {
 
                 // Block waiting for client connections
                 Socket clientSocket = serverSocket.accept();
@@ -63,6 +65,7 @@ public class Server {
                     String name = PLAYER + connectionCount;
 
                     ServerWorker worker = new ServerWorker(name, clientSocket, this);
+
                     workers.add(worker);
 
                     // Serve the client connection with a new Thread
@@ -70,10 +73,13 @@ public class Server {
                     thread.setName(name);
                     thread.start();
 
+                    maxPlayers--;
+
                 } catch (IOException ex) {
                     System.out.println(RECEIVING_CONNECTION_ERROR + ex.getMessage());
                 }
             }
+            serverSocket.close();
 
         } catch (IOException e) {
             System.out.println(UNABLE_SERVER_START + port);
@@ -93,5 +99,9 @@ public class Server {
 
     public List<ServerWorker> getWorkers() {
         return workers;
+    }
+
+    public int getMaxPlayers() {
+        return maxPlayers;
     }
 }

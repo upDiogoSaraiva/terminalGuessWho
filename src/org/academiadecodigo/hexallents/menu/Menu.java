@@ -27,12 +27,7 @@ public class Menu {
 
         int answerIndex = prompt.getUserInput(scanner);
 
-        if(answerIndex == 1) {
-            System.out.println(INSTRUCTIONS);
-            System.out.println(GAME_STARTED);
-        }
-
-        if(answerIndex == 3) {
+        if(answerIndex == 2) {
             System.out.println(CONNECTION_CLOSED);
             System.exit(0);
         }
